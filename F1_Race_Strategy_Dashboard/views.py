@@ -360,13 +360,11 @@ def render_race_strategy(data: dict, filters: dict):
 
         winner = sim_summary_df.iloc[0]
         st.markdown(
-            f"""
-            <div class="f1-kpi-card" style="margin-bottom: 20px;">
-                <div class="f1-kpi-title">🏆 OPTIMAL PREDICTED STRATEGY</div>
-                <div class="f1-kpi-value">{winner['Strategy']}</div>
-                <div class="f1-kpi-subtitle">Total Race Time: {winner['TotalRaceTimeSec']:,.1f}s | Advantage: +{sim_summary_df.iloc[1]['DeltaToFastestSec']:.2f}s over P2</div>
-            </div>
-            """,
+            f'<div class="f1-kpi-card" style="margin-bottom: 20px;">'
+            f'<div class="f1-kpi-title">🏆 OPTIMAL PREDICTED STRATEGY</div>'
+            f'<div class="f1-kpi-value">{winner["Strategy"]}</div>'
+            f'<div class="f1-kpi-subtitle">Total Race Time: {winner["TotalRaceTimeSec"]:,.1f}s | Advantage: +{sim_summary_df.iloc[1]["DeltaToFastestSec"]:.2f}s over P2</div>'
+            f'</div>',
             unsafe_allow_html=True
         )
 
@@ -497,13 +495,11 @@ def render_tyre_analysis(data: dict, filters: dict):
             badge = compound_badge_html(comp)
             with cols[idx % len(cols)]:
                 st.markdown(
-                    f"""
-                    <div class="f1-kpi-card">
-                        <div class="f1-kpi-title">{badge} {comp} DEGRADATION</div>
-                        <div class="f1-kpi-value">+{row['DegradationSecPerLap']:.3f} s/lap</div>
-                        <div class="f1-kpi-subtitle">Sample: {row['SampleLaps']:,} laps | Max Life: {row['MaxTyreLife']}L</div>
-                    </div>
-                    """,
+                    f'<div class="f1-kpi-card">'
+                    f'<div class="f1-kpi-title">{badge} {comp} DEGRADATION</div>'
+                    f'<div class="f1-kpi-value">+{row["DegradationSecPerLap"]:.3f} s/lap</div>'
+                    f'<div class="f1-kpi-subtitle">Sample: {row["SampleLaps"]:,} laps | Max Life: {row["MaxTyreLife"]}L</div>'
+                    f'</div>',
                     unsafe_allow_html=True
                 )
 

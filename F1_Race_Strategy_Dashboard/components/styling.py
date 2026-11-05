@@ -46,15 +46,46 @@ def apply_custom_css():
     }}
 
     .block-container {{
-        padding-top: 1.8rem !important;
-        padding-bottom: 2.5rem !important;
-        max-width: 97% !important;
+        padding-top: 0.5rem !important;
+        padding-bottom: 2.0rem !important;
+        max-width: 98% !important;
+    }}
+
+    section[data-testid="stSidebar"] .block-container {{
+        padding-top: 0.5rem !important;
+        padding-bottom: 1.0rem !important;
     }}
 
     /* Top Header Bar */
     header[data-testid="stHeader"] {{
         background: transparent !important;
-        height: 2.2rem !important;
+        height: 1.5rem !important;
+        min-height: 1.5rem !important;
+    }}
+
+    /* Top Horizontal Dashboard Navigation Bar */
+    div[role="radiogroup"][aria-orientation="horizontal"] {{
+        background: linear-gradient(90deg, #111620 0%, #161d2b 100%);
+        border: 1px solid var(--border-color);
+        border-bottom: 2px solid var(--accent-red);
+        border-radius: 8px;
+        padding: 6px 10px;
+        gap: 6px !important;
+        margin-bottom: 8px;
+    }}
+
+    div[role="radiogroup"][aria-orientation="horizontal"] > label {{
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 6px !important;
+        padding: 5px 11px !important;
+        margin: 0 !important;
+        transition: all 0.15s ease;
+    }}
+
+    div[role="radiogroup"][aria-orientation="horizontal"] > label:hover {{
+        border-color: var(--accent-red) !important;
+        background: rgba(225, 6, 0, 0.14) !important;
     }}
 
     /* Typography */
@@ -291,18 +322,16 @@ def render_active_filter_banner(filters: dict):
     ev = filters.get("selected_event", "All Events")
     sort_lbl = "Chronological (1950 -> 2026)" if filters.get("year_sort_ascending", False) else "Newest First (2026 -> 1950)"
 
-    st.markdown(
-        f"""
-        <div class="f1-filter-banner">
-            <span class="f1-filter-pill">📅 Year: <b>{yr}</b></span>
-            <span class="f1-filter-pill">🏎️ Team: <b>{team}</b></span>
-            <span class="f1-filter-pill">👤 Driver: <b>{drv_str}</b></span>
-            <span class="f1-filter-pill">📍 Grand Prix: <b>{ev}</b></span>
-            <span class="f1-filter-pill">🔃 Year Sort: <b>{sort_lbl}</b></span>
-        </div>
-        """,
-        unsafe_allow_html=True
+    banner_html = (
+        f'<div class="f1-filter-banner">'
+        f'<span class="f1-filter-pill">📅 Year: <b>{yr}</b></span>'
+        f'<span class="f1-filter-pill">🏎️ Team: <b>{team}</b></span>'
+        f'<span class="f1-filter-pill">👤 Driver: <b>{drv_str}</b></span>'
+        f'<span class="f1-filter-pill">📍 Grand Prix: <b>{ev}</b></span>'
+        f'<span class="f1-filter-pill">🔃 Year Sort: <b>{sort_lbl}</b></span>'
+        f'</div>'
     )
+    st.markdown(banner_html, unsafe_allow_html=True)
 
 
 def get_plotly_f1_layout(title: str = "", height: int = 400) -> dict:

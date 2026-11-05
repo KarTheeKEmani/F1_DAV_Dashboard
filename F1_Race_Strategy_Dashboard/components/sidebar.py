@@ -4,6 +4,18 @@ from typing import Dict, Any, List, Optional
 from data_processing.data_loader import load_unified_results
 
 
+NAV_OPTIONS = [
+    "🏁 Race Overview",
+    "⏱️ Race Strategy Analysis",
+    "🛞 Tyre & Stint Analysis",
+    "🛑 Pit Stop Analytics",
+    "⚡ Lap-Time & Telemetry Analysis",
+    "🏆 Driver & Team Performance",
+    "🗺️ Season & Race Explorer",
+    "🔍 Dataset Explorer & Data Quality",
+]
+
+
 def render_sidebar(
     events_df: pd.DataFrame,
     drivers_list: List[str],
@@ -13,38 +25,31 @@ def render_sidebar(
     laps_df: Optional[pd.DataFrame] = None,
 ) -> Dict[str, Any]:
     """
-    Renders the clean Formula 1 pit-wall sidebar navigation and cascading
-    Year, Team Name, Driver, Grand Prix, and Compound filters.
+    Renders the Top Horizontal Dashboard Navigation Bar at the top of the main page
+    and the cascading Year, Team Name, Driver, Grand Prix, and Compound filters at the top of the sidebar.
     """
     if unified_results_df is None or unified_results_df.empty:
         unified_results_df = results_df if (results_df is not None and not results_df.empty) else load_unified_results()
 
+    # 1. Top Horizontal Navigation Bar at the VERY TOP of the Main Dashboard
+    selected_page = st.radio(
+        "📌 Dashboard Navigation",
+        NAV_OPTIONS,
+        index=0,
+        horizontal=True,
+        label_visibility="collapsed",
+    )
+
+    # 2. Left Sidebar: Brand Header + Cascading Year, Team, Driver & GP Filters at the Top
     with st.sidebar:
         st.markdown(
-            """
-            <div class="f1-sidebar-brand">
-                <div class="f1-brand-title">🏎️ F1 ANALYTICS</div>
-                <div class="f1-brand-tagline">STRATEGY & TELEMETRY CONTROL</div>
-            </div>
-            """,
-            unsafe_allow_html=True
+            '<div class="f1-sidebar-brand">'
+            '<div class="f1-brand-title">🏎️ F1 ANALYTICS</div>'
+            '<div class="f1-brand-tagline">STRATEGY & TELEMETRY CONTROL</div>'
+            '</div>',
+            unsafe_allow_html=True,
         )
 
-        # 1. Navigation Menu
-        st.markdown("##### 📌 DASHBOARD SECTIONS")
-        nav_options = [
-            "🏁 Race Overview",
-            "⏱️ Race Strategy Analysis",
-            "🛞 Tyre & Stint Analysis",
-            "🛑 Pit Stop Analytics",
-            "⚡ Lap-Time & Telemetry Analysis",
-            "🏆 Driver & Team Performance",
-            "🗺️ Season & Race Explorer",
-            "🔍 Dataset Explorer & Data Quality",
-        ]
-        selected_page = st.radio("Navigate Section", nav_options, index=0, label_visibility="collapsed")
-
-        st.markdown("---")
         st.markdown("##### 🎯 YEAR, TEAM & DRIVER FILTERS")
 
         # Build sorted Year options from unified dataset (1950 - 2026)
@@ -54,14 +59,13 @@ def render_sidebar(
             avail_years = list(range(2026, 1949, -1))
 
         year_options = ["All Years"] + [str(y) for y in avail_years]
-        # Default to "All Years" so user immediately sees Year-wise sorted analytics across seasons, or can pick any year
         selected_year = st.selectbox("📅 Select Year (Season)", year_options, index=0)
 
         # Year-wise sort order option
         sort_order_choice = st.selectbox(
             "🔃 Year-Wise Sort Order",
             ["Newest First (2026 -> 1950)", "Chronological (1950 -> 2026)"],
-            index=0
+            index=0,
         )
         year_sort_ascending = sort_order_choice.startswith("Chronological")
 
@@ -101,7 +105,7 @@ def render_sidebar(
         selected_drivers = st.multiselect(
             "👤 Select Driver(s)",
             driver_choices,
-            default=["All Drivers"]
+            default=["All Drivers"],
         )
         if not selected_drivers:
             selected_drivers = ["All Drivers"]
@@ -126,13 +130,11 @@ def render_sidebar(
 
         st.markdown("---")
         st.markdown(
-            """
-            <div style="font-size: 0.73rem; color: #626d7f; line-height: 1.4;">
-                <b>Datasets:</b> 14 Kaggle F1 Repositories (1950–2026) + FastF1 Telemetry<br>
-                <b>Sorting:</b> Year-Wise Active
-            </div>
-            """,
-            unsafe_allow_html=True
+            '<div style="font-size: 0.73rem; color: #626d7f; line-height: 1.4;">'
+            '<b>Datasets:</b> 14 Kaggle F1 Repositories (1950–2026) + FastF1 Telemetry<br>'
+            '<b>Sorting:</b> Year-Wise Active'
+            '</div>',
+            unsafe_allow_html=True,
         )
 
     return {
