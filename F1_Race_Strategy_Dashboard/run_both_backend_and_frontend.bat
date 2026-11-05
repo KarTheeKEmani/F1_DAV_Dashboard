@@ -18,7 +18,7 @@ echo [1/2] Launching FastAPI Backend Server on http://localhost:8000 ...
 start "F1 Backend API (Port 8000)" "%PYTHON_EXE%" -m uvicorn api_server:app --host 0.0.0.0 --port 8000
 
 echo [2/2] Launching Streamlit Frontend Dashboard on http://localhost:8501 ...
-start "F1 Frontend UI (Port 8501)" "%STREAMLIT_EXE%" run app.py
+start "F1 Frontend UI (Port 8501)" "%STREAMLIT_EXE%" run app.py --server.port 8501 --client.toolbarMode minimal --client.showSidebarNavigation false
 
 echo.
 echo =====================================================================

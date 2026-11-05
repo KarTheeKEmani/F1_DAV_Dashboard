@@ -1,26 +1,37 @@
 import streamlit as st
 import pandas as pd
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
+from data_processing.data_loader import load_unified_results
 
 
-def render_sidebar(events_df: pd.DataFrame, drivers_list: List[str], teams_list: List[str]) -> Dict[str, Any]:
+def render_sidebar(
+    events_df: pd.DataFrame,
+    drivers_list: List[str],
+    teams_list: List[str],
+    unified_results_df: Optional[pd.DataFrame] = None,
+    results_df: Optional[pd.DataFrame] = None,
+    laps_df: Optional[pd.DataFrame] = None,
+) -> Dict[str, Any]:
     """
-    Renders the Formula 1 pit-wall sidebar navigation and cascading filters.
-    Returns dictionary with all user selections.
+    Renders the clean Formula 1 pit-wall sidebar navigation and cascading
+    Year, Team Name, Driver, Grand Prix, and Compound filters.
     """
+    if unified_results_df is None or unified_results_df.empty:
+        unified_results_df = results_df if (results_df is not None and not results_df.empty) else load_unified_results()
+
     with st.sidebar:
         st.markdown(
             """
             <div class="f1-sidebar-brand">
-                <div class="f1-brand-title">🏁 F1 TELEMETRY</div>
-                <div class="f1-brand-tagline">RACE STRATEGY PLATFORM</div>
+                <div class="f1-brand-title">🏎️ F1 ANALYTICS</div>
+                <div class="f1-brand-tagline">STRATEGY & TELEMETRY CONTROL</div>
             </div>
             """,
             unsafe_allow_html=True
         )
 
         # 1. Navigation Menu
-        st.markdown("### 📌 CONTROL CENTER")
+        st.markdown("##### 📌 DASHBOARD SECTIONS")
         nav_options = [
             "🏁 Race Overview",
             "⏱️ Race Strategy Analysis",
@@ -34,44 +45,91 @@ def render_sidebar(events_df: pd.DataFrame, drivers_list: List[str], teams_list:
         selected_page = st.radio("Navigate Section", nav_options, index=0, label_visibility="collapsed")
 
         st.markdown("---")
-        st.markdown("### ⚙️ RACE FILTERS")
+        st.markdown("##### 🎯 YEAR, TEAM & DRIVER FILTERS")
 
-        # Season selector
-        season_options = ["2023 (FastF1 Official)", "2021-2024 (Multi-Year Strategy)", "Historical (1950-2024 Ergast)"]
-        selected_season = st.selectbox("Season Dataset", season_options, index=0)
-
-        # Grand Prix Event selector (Cascading)
-        if not events_df.empty and 'EventName' in events_df.columns:
-            event_names = ["All Events"] + sorted(events_df['EventName'].dropna().unique().tolist())
-            selected_event = st.selectbox("Grand Prix", event_names, index=0)
+        # Build sorted Year options from unified dataset (1950 - 2026)
+        if not unified_results_df.empty and "Year" in unified_results_df.columns:
+            avail_years = sorted(unified_results_df["Year"].dropna().astype(int).unique().tolist(), reverse=True)
         else:
-            selected_event = "All Events"
+            avail_years = list(range(2026, 1949, -1))
 
-        # Driver Multi-select
-        driver_choices = ["All Drivers"] + sorted(drivers_list) if drivers_list else ["All Drivers"]
-        selected_drivers = st.multiselect("Drivers", driver_choices, default=["All Drivers"])
+        year_options = ["All Years"] + [str(y) for y in avail_years]
+        # Default to "All Years" so user immediately sees Year-wise sorted analytics across seasons, or can pick any year
+        selected_year = st.selectbox("📅 Select Year (Season)", year_options, index=0)
 
-        # Team / Constructor filter
-        team_choices = ["All Teams"] + sorted(teams_list) if teams_list else ["All Teams"]
-        selected_team = st.selectbox("Team / Constructor", team_choices, index=0)
+        # Year-wise sort order option
+        sort_order_choice = st.selectbox(
+            "🔃 Year-Wise Sort Order",
+            ["Newest First (2026 -> 1950)", "Chronological (1950 -> 2026)"],
+            index=0
+        )
+        year_sort_ascending = sort_order_choice.startswith("Chronological")
+
+        # Filter the reference dataframe by selected Year for cascading Team, Driver, and Event lists
+        ref_df = unified_results_df.copy() if not unified_results_df.empty else pd.DataFrame()
+        if selected_year != "All Years" and not ref_df.empty:
+            ref_df = ref_df[ref_df["Year"] == int(selected_year)]
+
+        # Team / Constructor filter (Cascading from Year)
+        if not ref_df.empty and "TeamName" in ref_df.columns:
+            cascaded_teams = sorted(ref_df["TeamName"].dropna().astype(str).unique().tolist())
+        else:
+            cascaded_teams = sorted(teams_list) if teams_list else []
+
+        team_choices = ["All Teams"] + cascaded_teams
+        selected_team = st.selectbox("🏎️ Select Team / Constructor", team_choices, index=0)
+
+        # Filter reference dataframe by selected Team for cascading Driver list
+        if selected_team != "All Teams" and not ref_df.empty:
+            ref_df_drv = ref_df[ref_df["TeamName"] == selected_team]
+        else:
+            ref_df_drv = ref_df
+
+        # Driver selector (Cascading from Year & Team, showing Full Name + Code)
+        if not ref_df_drv.empty and {"FullName", "Abbreviation"}.issubset(ref_df_drv.columns):
+            drv_pairs = (
+                ref_df_drv[["FullName", "Abbreviation"]]
+                .dropna()
+                .drop_duplicates()
+                .sort_values("FullName")
+            )
+            formatted_drivers = [f"{r['FullName']} ({r['Abbreviation']})" for _, r in drv_pairs.iterrows()]
+        else:
+            formatted_drivers = sorted(drivers_list) if drivers_list else []
+
+        driver_choices = ["All Drivers"] + formatted_drivers
+        selected_drivers = st.multiselect(
+            "👤 Select Driver(s)",
+            driver_choices,
+            default=["All Drivers"]
+        )
+        if not selected_drivers:
+            selected_drivers = ["All Drivers"]
+
+        # Grand Prix Event selector (Cascading from Year)
+        if not ref_df.empty and "EventName" in ref_df.columns:
+            event_names = ["All Events"] + sorted(ref_df["EventName"].dropna().astype(str).unique().tolist())
+        elif not events_df.empty and "EventName" in events_df.columns:
+            event_names = ["All Events"] + sorted(events_df["EventName"].dropna().astype(str).unique().tolist())
+        else:
+            event_names = ["All Events"]
+
+        selected_event = st.selectbox("📍 Select Grand Prix", event_names, index=0)
 
         # Tyre Compound filter
         compound_choices = ["ALL", "SOFT", "MEDIUM", "HARD", "INTERMEDIATE", "WET"]
-        selected_compound = st.selectbox("Tyre Compound", compound_choices, index=0)
+        selected_compound = st.selectbox("🛞 Tyre Compound", compound_choices, index=0)
 
         # Reset button
-        st.markdown("")
-        if st.button("🔄 Reset All Filters", use_container_width=True):
+        if st.button("🔄 Reset Filters", use_container_width=True):
             st.rerun()
 
-        # Footer Badge
         st.markdown("---")
         st.markdown(
             """
-            <div style="font-size: 0.75rem; color: #626d7f; line-height: 1.4;">
-                <b>Project:</b> Formula 1 Telemetry Platform<br>
-                <b>Data:</b> FastF1 2023, Ergast DB, Strategy Stints<br>
-                <b>Status:</b> Live Race Analytics Ready
+            <div style="font-size: 0.73rem; color: #626d7f; line-height: 1.4;">
+                <b>Datasets:</b> 14 Kaggle F1 Repositories (1950–2026) + FastF1 Telemetry<br>
+                <b>Sorting:</b> Year-Wise Active
             </div>
             """,
             unsafe_allow_html=True
@@ -79,9 +137,12 @@ def render_sidebar(events_df: pd.DataFrame, drivers_list: List[str], teams_list:
 
     return {
         "selected_page": selected_page,
-        "selected_season": selected_season,
+        "selected_year": selected_year,
+        "selected_season": f"{selected_year} Season" if selected_year != "All Years" else "1950-2026 All Seasons",
+        "year_sort_ascending": year_sort_ascending,
+        "year_sort_desc": not year_sort_ascending,
         "selected_event": selected_event,
         "selected_drivers": selected_drivers,
         "selected_team": selected_team,
-        "selected_compound": selected_compound
+        "selected_compound": selected_compound,
     }

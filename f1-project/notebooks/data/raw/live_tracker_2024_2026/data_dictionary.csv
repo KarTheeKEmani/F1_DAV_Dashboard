@@ -1,0 +1,95 @@
+file,column,type,description
+races.csv,season,int,Championship year
+races.csv,round,int,Round number within the season
+races.csv,race_name,string,Official Grand Prix name
+races.csv,date,date,Race date
+races.csv,time,string,Race start time (UTC)
+races.csv,circuit_id,string,Circuit join key
+races.csv,circuit_name,string,Track name
+races.csv,city,string,Host city
+races.csv,country,string,Host country
+races.csv,lat,float,Circuit latitude
+races.csv,lng,float,Circuit longitude
+race_results.csv,position,int,Final classified position
+race_results.csv,position_text,string,"Position text (R=retired, D=disq, etc)"
+race_results.csv,points,float,Championship points awarded
+race_results.csv,driver_id,string,Driver join key
+race_results.csv,driver_code,string,3-letter driver code
+race_results.csv,driver_number,int,Race number on car
+race_results.csv,driver_name,string,Full driver name
+race_results.csv,driver_nat,string,Driver nationality
+race_results.csv,constructor_id,string,Constructor join key
+race_results.csv,constructor,string,Team name
+race_results.csv,grid_pos,int,Starting grid position
+race_results.csv,laps,int,Laps completed
+race_results.csv,status,string,"Finish status (Finished, +1 Lap, Engine, etc)"
+race_results.csv,time_finished,string,Finishing time or gap
+race_results.csv,fastest_lap_time,string,Driver's fastest lap time
+race_results.csv,fastest_lap_rank,int,Rank of fastest lap (1 = fastest of race)
+race_results.csv,avg_speed_kph,float,Average speed during fastest lap
+qualifying.csv,position,int,Qualifying position
+qualifying.csv,q1,string,Q1 best lap time
+qualifying.csv,q2,string,Q2 best lap time
+qualifying.csv,q3,string,Q3 best lap time (top 10)
+pit_stops.csv,stop,int,Stop number for that driver in race
+pit_stops.csv,lap,int,Lap number when stop occurred
+pit_stops.csv,time,string,Time of day when stop occurred
+pit_stops.csv,duration_s,float,Pit stop duration in seconds
+driver_standings.csv,position,int,Championship position after this round
+driver_standings.csv,points,float,Cumulative points
+driver_standings.csv,wins,int,Cumulative wins this season
+constructor_standings.csv,position,int,Constructor championship position
+constructor_standings.csv,points,float,Cumulative team points
+constructor_standings.csv,wins,int,Cumulative team wins
+drivers.csv,driver_id,string,Unique driver identifier (primary key)
+drivers.csv,code,string,Official 3-letter code
+drivers.csv,permanent_num,int,Career race number
+drivers.csv,given_name,string,First name
+drivers.csv,family_name,string,Last name
+drivers.csv,full_name,string,Concatenated full name
+drivers.csv,dob,date,Date of birth
+drivers.csv,nationality,string,Driver nationality
+constructors.csv,constructor_id,string,Unique constructor ID (primary key)
+constructors.csv,name,string,Team name
+constructors.csv,nationality,string,Team nationality
+circuits.csv,circuit_id,string,Unique circuit ID (primary key)
+circuits.csv,name,string,Circuit name
+circuits.csv,city,string,Host city
+circuits.csv,country,string,Host country
+circuits.csv,lat,float,Latitude
+circuits.csv,lng,float,Longitude
+pit_stops.csv,is_red_flag_hold,boolean,"True if duration > 60s (likely red flag hold or parc fermé wait, not an actual pit stop). Filter to False for real pit stop analysis."
+sprint_results.csv,season,int,Championship year
+sprint_results.csv,round,int,Round number (matches main race round)
+sprint_results.csv,race_name,string,Grand Prix name (Sprint occurs on Saturday of the same weekend)
+sprint_results.csv,sprint_date,date,Date of the Sprint race
+sprint_results.csv,circuit_id,string,Circuit join key
+sprint_results.csv,position,int,Final classified position in the Sprint race
+sprint_results.csv,position_text,string,"Position text (R=retired, D=disqualified, etc)"
+sprint_results.csv,points,float,Championship points awarded for the Sprint (top 8 score)
+sprint_results.csv,driver_id,string,Driver join key
+sprint_results.csv,driver_code,string,3-letter driver code
+sprint_results.csv,driver_number,int,Race number on car
+sprint_results.csv,driver_name,string,Full driver name
+sprint_results.csv,driver_nat,string,Driver nationality
+sprint_results.csv,constructor_id,string,Constructor join key
+sprint_results.csv,constructor,string,Team name
+sprint_results.csv,grid_pos,int,Starting grid position for the Sprint
+sprint_results.csv,laps,int,Laps completed in the Sprint race
+sprint_results.csv,status,string,"Finish status (Finished, +1 Lap, Engine, Collision, etc)"
+sprint_results.csv,time_finished,string,Finishing time or gap to winner
+sprint_results.csv,fastest_lap_time,string,Fastest lap time during the Sprint
+sprint_qualifying.csv,season,int,Championship year
+sprint_qualifying.csv,round,int,Round number (matches main race round)
+sprint_qualifying.csv,race_name,string,Grand Prix name
+sprint_qualifying.csv,sprint_q_date,date,Date of the Sprint Qualifying session (also known as Sprint Shootout)
+sprint_qualifying.csv,position,int,Final Sprint Qualifying position (determines Sprint race grid)
+sprint_qualifying.csv,driver_id,string,Driver join key
+sprint_qualifying.csv,driver_code,string,3-letter driver code
+sprint_qualifying.csv,driver_name,string,Full driver name
+sprint_qualifying.csv,constructor_id,string,Constructor join key
+sprint_qualifying.csv,constructor,string,Team name
+sprint_qualifying.csv,sq1,string,SQ1 best lap time in M:SS.mmm format
+sprint_qualifying.csv,sq2,string,SQ2 best lap time (top 15 only)
+sprint_qualifying.csv,sq3,string,SQ3 best lap time (top 10 only) - determines Sprint pole
+sprint_qualifying.csv,best_lap,string,"Best lap time achieved by driver across all Sprint Qualifying segments (SQ1, SQ2, or SQ3) in M:SS.mmm format"

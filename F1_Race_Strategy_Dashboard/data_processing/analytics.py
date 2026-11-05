@@ -103,7 +103,7 @@ def calculate_pitstop_strategy_impact(strategy_summary_df: pd.DataFrame) -> Dict
 
 
 def compute_pitstop_team_rankings(pitstops_df: pd.DataFrame, results_df: Optional[pd.DataFrame] = None) -> pd.DataFrame:
-    """Ranks team pit crews by median duration, fastest pit stops, and consistency."""
+    """Ranks team/driver pit crews by median duration, fastest pit stops, and consistency."""
     if pitstops_df.empty:
         return pd.DataFrame()
 
@@ -118,26 +118,18 @@ def compute_pitstop_team_rankings(pitstops_df: pd.DataFrame, results_df: Optiona
     if clean_ps.empty:
         return pd.DataFrame()
 
-    # If results_df available, map driver to Team
-    if results_df is not None and not results_df.empty and 'TeamName' in results_df.columns:
-        driver_team_map = results_df.drop_duplicates(subset=['DriverNumber']).set_index('DriverNumber')['TeamName'].to_dict()
-        if 'driverId' in clean_ps.columns and 'driverName' in clean_ps.columns:
-            # Group by driver or race
-            pass
+    group_col = 'code' if 'code' in clean_ps.columns else 'driverId'
+    agg_dict = {
+        'TotalStops': ('DurationSec', 'count'),
+        'FastestStopSec': ('DurationSec', 'min'),
+        'MedianStopSec': ('DurationSec', 'median'),
+        'AvgStopSec': ('DurationSec', 'mean'),
+        'StdDevSec': ('DurationSec', 'std')
+    }
+    if 'constructorName' in clean_ps.columns:
+        agg_dict['Constructor'] = ('constructorName', lambda s: s.dropna().mode().iloc[0] if not s.dropna().empty else 'Multiple')
 
-    # Aggregates across races/teams
-    summary = (
-        clean_ps.groupby('code' if 'code' in clean_ps.columns else 'driverId')
-        .agg(
-            TotalStops=('DurationSec', 'count'),
-            FastestStopSec=('DurationSec', 'min'),
-            MedianStopSec=('DurationSec', 'median'),
-            AvgStopSec=('DurationSec', 'mean'),
-            StdDevSec=('DurationSec', 'std')
-        )
-        .reset_index()
-    )
-
+    summary = clean_ps.groupby(group_col).agg(**agg_dict).reset_index()
     summary = summary.sort_values('MedianStopSec').reset_index(drop=True)
     summary['Rank'] = summary.index + 1
     return summary
@@ -223,7 +215,7 @@ def calculate_teammate_comparison(results_df: pd.DataFrame) -> pd.DataFrame:
 
 def simulate_race_strategy(
     total_laps: int = 57,
-    strategies: Optional[List[Dict[str, Any]]] = None,
+    strategies: Optional[Any] = None,
     base_lap_sec: float = 93.0,
     pit_loss_sec: float = 21.5,
     deg_slopes: Optional[Dict[str, float]] = None,
@@ -232,8 +224,15 @@ def simulate_race_strategy(
     """
     Simulates lap-by-lap race progression and total race time for competing tyre strategies.
     Accounts for compound base pace deltas, tyre wear degradation, and pit-lane time loss.
+    Supports both keyword arguments and positional (total_laps, base_lap_sec, pit_loss_sec).
     Returns (lap_progression_df, strategy_summary_df).
     """
+    # Handle positional calls like simulate_race_strategy(57, 92.5, 21.5)
+    if isinstance(strategies, (int, float)):
+        pit_loss_sec = float(base_lap_sec) if base_lap_sec != 93.0 else pit_loss_sec
+        base_lap_sec = float(strategies)
+        strategies = None
+
     if deg_slopes is None:
         deg_slopes = {"SOFT": 0.115, "MEDIUM": 0.065, "HARD": 0.038, "INTERMEDIATE": 0.050, "WET": 0.040}
     if compound_offsets is None:
@@ -242,14 +241,14 @@ def simulate_race_strategy(
     if strategies is None:
         strategies = [
             {
-                "name": "1-Stop: Medium ➔ Hard",
+                "name": "1-Stop: Medium -> Hard",
                 "stints": [
                     {"compound": "MEDIUM", "laps": int(total_laps * 0.40)},
                     {"compound": "HARD", "laps": total_laps - int(total_laps * 0.40)}
                 ]
             },
             {
-                "name": "2-Stop: Soft ➔ Medium ➔ Hard",
+                "name": "2-Stop: Soft -> Medium -> Hard",
                 "stints": [
                     {"compound": "SOFT", "laps": int(total_laps * 0.25)},
                     {"compound": "MEDIUM", "laps": int(total_laps * 0.35)},
@@ -257,7 +256,7 @@ def simulate_race_strategy(
                 ]
             },
             {
-                "name": "2-Stop: Medium ➔ Hard ➔ Soft",
+                "name": "2-Stop: Medium -> Hard -> Soft",
                 "stints": [
                     {"compound": "MEDIUM", "laps": int(total_laps * 0.35)},
                     {"compound": "HARD", "laps": int(total_laps * 0.40)},
@@ -287,7 +286,7 @@ def simulate_race_strategy(
                     break
                 # Lap time model: base + offset + degradation
                 lap_time = base_lap_sec + offset + (tyre_age * slope)
-                # Fuel burn-off effect: car gets ~0.03s faster per lap as fuel is consumed
+                # Fuel burn-off effect: car gets ~0.032s faster per lap as fuel is consumed
                 fuel_advantage = (current_lap - 1) * 0.032
                 net_lap_time = lap_time - fuel_advantage
 
@@ -322,3 +321,151 @@ def simulate_race_strategy(
     summary_df["Rank"] = summary_df.index + 1
 
     return lap_df, summary_df
+
+
+def analyze_safety_car_and_red_flags(
+    safety_cars_df: pd.DataFrame,
+    red_flags_df: pd.DataFrame
+) -> Dict[str, Any]:
+    """
+    Analyzes historical Safety Car deployments (380 events) and Red Flag stoppages (103 events)
+    from the Kaggle F1 Race Events dataset.
+    """
+    out: Dict[str, Any] = {
+        "total_safety_cars": len(safety_cars_df),
+        "total_red_flags": len(red_flags_df),
+        "avg_sc_full_laps": 0.0,
+        "causes_breakdown": pd.DataFrame(),
+        "sc_by_decade": pd.DataFrame(),
+    }
+    if not safety_cars_df.empty:
+        if "FullLaps" in safety_cars_df.columns:
+            out["avg_sc_full_laps"] = round(float(safety_cars_df["FullLaps"].dropna().mean()), 2)
+        if "Cause" in safety_cars_df.columns:
+            causes = (
+                safety_cars_df["Cause"]
+                .fillna("Unknown")
+                .astype(str)
+                .str.strip()
+                .value_counts()
+                .head(10)
+                .reset_index()
+            )
+            causes.columns = ["Cause", "Deployments"]
+            out["causes_breakdown"] = causes
+        if "Year" in safety_cars_df.columns:
+            sc_yr = safety_cars_df.dropna(subset=["Year"]).copy()
+            sc_yr["Decade"] = (sc_yr["Year"].astype(int) // 10 * 10).astype(str) + "s"
+            by_dec = sc_yr.groupby("Decade").agg(
+                Deployments=("Race", "count"),
+                AvgLaps=("FullLaps", "mean")
+            ).reset_index()
+            out["sc_by_decade"] = by_dec
+
+    return out
+
+
+def analyze_multi_year_strategy_warehouse(
+    combined_df: pd.DataFrame,
+    strategy_df: pd.DataFrame
+) -> Dict[str, Any]:
+    """
+    Computes multi-season (2021-2024 & 1950-2024) strategy insights across the 26,499-row
+    combined warehouse and 80,767-row Kaggle strategy dataset.
+    """
+    out: Dict[str, Any] = {
+        "grid_to_finish": pd.DataFrame(),
+        "pitstops_vs_finish_multiyear": pd.DataFrame(),
+        "season_compound_pace": pd.DataFrame(),
+    }
+
+    if not combined_df.empty and {"grid", "position"}.issubset(combined_df.columns):
+        valid_gf = combined_df.dropna(subset=["grid", "position"]).copy()
+        valid_gf = valid_gf[(valid_gf["grid"] >= 1) & (valid_gf["grid"] <= 20) & (valid_gf["position"] >= 1)]
+        if not valid_gf.empty:
+            gf_summary = (
+                valid_gf.groupby("grid")
+                .agg(
+                    Races=("position", "count"),
+                    AvgFinish=("position", "mean"),
+                    WinRatePct=("position", lambda s: round((s == 1).mean() * 100, 2)),
+                    PodiumRatePct=("position", lambda s: round((s <= 3).mean() * 100, 2)),
+                )
+                .reset_index()
+            )
+            out["grid_to_finish"] = gf_summary
+
+        if "pit_stops" in combined_df.columns:
+            valid_ps = combined_df.dropna(subset=["pit_stops", "position"]).copy()
+            valid_ps = valid_ps[(valid_ps["pit_stops"] >= 1) & (valid_ps["pit_stops"] <= 5)]
+            if not valid_ps.empty:
+                ps_summary = (
+                    valid_ps.groupby("pit_stops")
+                    .agg(
+                        DriverRaces=("position", "count"),
+                        AvgFinish=("position", "mean"),
+                        AvgPoints=("points", "mean"),
+                        AvgSafetyCarLaps=("safety_car_laps", "mean") if "safety_car_laps" in valid_ps.columns else ("position", "count"),
+                    )
+                    .reset_index()
+                )
+                out["pitstops_vs_finish_multiyear"] = ps_summary
+
+    if not strategy_df.empty and {"Year", "Compound", "LapTimeSec"}.issubset(strategy_df.columns):
+        clean_s = strategy_df[
+            (strategy_df["LapTimeSec"] > 55) &
+            (strategy_df["LapTimeSec"] < 135) &
+            (strategy_df["Compound"].isin(["SOFT", "MEDIUM", "HARD", "INTERMEDIATE", "WET"]))
+        ]
+        if not clean_s.empty:
+            comp_pace = (
+                clean_s.groupby(["Year", "Compound"])
+                .agg(
+                    LapsCount=("LapTimeSec", "count"),
+                    MeanLapSec=("LapTimeSec", "mean"),
+                    MedianLapSec=("LapTimeSec", "median"),
+                    MeanTyreLife=("TyreLife", "mean") if "TyreLife" in clean_s.columns else ("LapTimeSec", "count"),
+                )
+                .reset_index()
+            )
+            out["season_compound_pace"] = comp_pace
+
+    return out
+
+
+def analyze_all_time_drivers_and_podiums(
+    drivers_career_df: pd.DataFrame,
+    podiums_df: pd.DataFrame
+) -> Dict[str, Any]:
+    """
+    Computes historical driver efficiency leaders (868 drivers) and podium winners (1950-2026).
+    """
+    out: Dict[str, Any] = {
+        "top_winners_career": pd.DataFrame(),
+        "podium_leaders_1950_2026": pd.DataFrame(),
+        "top_circuits_hosted": pd.DataFrame(),
+    }
+
+    if not drivers_career_df.empty and "Race_Wins" in drivers_career_df.columns:
+        top_w = (
+            drivers_career_df[drivers_career_df["Race_Starts"] >= 15]
+            .sort_values(["Race_Wins", "Pole_Positions", "Podiums"], ascending=False)
+            .head(25)
+            .copy()
+        )
+        for rate_col in ["Win_Rate", "Pole_Rate", "Podium_Rate"]:
+            if rate_col in top_w.columns:
+                top_w[f"{rate_col}_Pct"] = (top_w[rate_col] * 100).round(1)
+        out["top_winners_career"] = top_w
+
+    if not podiums_df.empty and "Winner" in podiums_df.columns:
+        winners = podiums_df["Winner"].value_counts().head(15).reset_index()
+        winners.columns = ["Driver", "GrandPrixWins"]
+        out["podium_leaders_1950_2026"] = winners
+
+        if "Circuit" in podiums_df.columns:
+            circuits = podiums_df["Circuit"].value_counts().head(15).reset_index()
+            circuits.columns = ["Circuit", "PodiumRacesHosted"]
+            out["top_circuits_hosted"] = circuits
+
+    return out

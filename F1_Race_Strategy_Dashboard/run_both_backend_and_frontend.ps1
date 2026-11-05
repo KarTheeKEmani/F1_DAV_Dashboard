@@ -17,7 +17,7 @@ Write-Host "`n[1/2] Starting FastAPI Backend on http://localhost:8000..." -Foreg
 Start-Process -FilePath $PythonExe -ArgumentList "-m uvicorn api_server:app --host 0.0.0.0 --port 8000"
 
 Write-Host "[2/2] Starting Streamlit Frontend on http://localhost:8501..." -ForegroundColor Green
-Start-Process -FilePath $StreamlitExe -ArgumentList "run app.py"
+Start-Process -FilePath $StreamlitExe -ArgumentList "run app.py --server.port 8501 --client.toolbarMode minimal --client.showSidebarNavigation false"
 
 Write-Host "`n=====================================================================" -ForegroundColor Red
 Write-Host "   SERVICES ACTIVE:" -ForegroundColor White

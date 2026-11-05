@@ -1,0 +1,6 @@
+table,earliest_season,latest_season,row_count,availability_note
+pit_events,2011,2026,12912,"Recorded pit-stop events from 2011; absence before 2011 means unavailable, not zero stops."
+race_context,1950,2026,1167,Race and circuit metadata from 1950; detailed start weather and safety-car fields from 2023.
+race_drivers,1950,2026,26269,Official classified race entries from 1950.
+stints,2023,2026,5052,Detailed tyre-stint timing from OpenF1 coverage beginning in 2023.
+weather_observations,2023,2026,14087,Minute-level trackside OpenF1 weather beginning in 2023.

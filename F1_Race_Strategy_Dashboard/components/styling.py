@@ -4,7 +4,7 @@ from config import THEME_COLORS, TYRE_COMPOUND_COLORS
 
 
 def apply_custom_css():
-    """Applies a professional, motorsport pit-wall dark theme CSS across the entire app."""
+    """Applies a clean, modern motorsport pit-wall dark theme CSS and hides Streamlit Deploy/Menu clutter."""
     css = f"""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&family=JetBrains+Mono:wght@400;600&display=swap');
@@ -24,6 +24,20 @@ def apply_custom_css():
         --mono-font: 'JetBrains Mono', monospace;
     }}
 
+    /* HIDE STREAMLIT DEPLOY BUTTON, MAIN MENU, FOOTER & DEFAULT SIDEBAR NAV */
+    .stDeployButton,
+    .stAppDeployButton,
+    div[data-testid="stAppDeployButton"],
+    div[data-testid="stToolbarActions"],
+    div[data-testid="stStatusWidget"],
+    #MainMenu,
+    footer,
+    div[data-testid="stSidebarNav"],
+    section[data-testid="stSidebarNav"] {{
+        display: none !important;
+        visibility: hidden !important;
+    }}
+
     /* Main Container & Background */
     .stApp {{
         background-color: var(--bg-dark);
@@ -31,47 +45,89 @@ def apply_custom_css():
         font-family: var(--f1-font);
     }}
 
+    .block-container {{
+        padding-top: 1.8rem !important;
+        padding-bottom: 2.5rem !important;
+        max-width: 97% !important;
+    }}
+
     /* Top Header Bar */
     header[data-testid="stHeader"] {{
-        background: rgba(10, 13, 18, 0.85);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--border-color);
+        background: transparent !important;
+        height: 2.2rem !important;
     }}
 
     /* Typography */
     h1, h2, h3, h4, h5, h6 {{
         font-family: var(--f1-font);
         font-weight: 700;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.4px;
         color: #ffffff !important;
     }}
 
-    h1 {{
-        border-left: 5px solid var(--accent-red);
-        padding-left: 14px;
-        margin-top: 5px;
-        margin-bottom: 15px;
-        text-transform: uppercase;
-        font-size: 2.1rem;
+    h2 {{
+        border-left: 4px solid var(--accent-red);
+        padding-left: 12px;
+        margin-top: 0.2rem !important;
+        margin-bottom: 0.8rem !important;
+        font-size: 1.55rem !important;
+    }}
+
+    h3 {{
+        font-size: 1.12rem !important;
+        margin-top: 0.6rem !important;
+        margin-bottom: 0.5rem !important;
+        color: #f3f4f6 !important;
+    }}
+
+    /* Active Filter Status Bar */
+    .f1-filter-banner {{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        background: linear-gradient(90deg, rgba(19, 24, 34, 0.95) 0%, rgba(24, 31, 44, 0.95) 100%);
+        border: 1px solid var(--border-color);
+        border-left: 4px solid var(--accent-red);
+        border-radius: 8px;
+        padding: 10px 16px;
+        margin-bottom: 18px;
+    }}
+
+    .f1-filter-pill {{
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 0.82rem;
+        color: #e5e7eb;
+    }}
+
+    .f1-filter-pill b {{
+        color: #ffffff;
+        font-weight: 700;
     }}
 
     /* KPI Cards Container */
     .f1-kpi-grid {{
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-        gap: 16px;
-        margin-bottom: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+        gap: 12px;
+        margin-bottom: 20px;
     }}
 
     .f1-kpi-card {{
-        background: linear-gradient(145deg, #131822 0%, #171e2c 100%);
+        background: linear-gradient(145deg, #121722 0%, #171e2c 100%);
         border: 1px solid var(--border-color);
         border-radius: 8px;
-        padding: 16px 18px;
+        padding: 14px 16px;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        transition: transform 0.2s ease, border-color 0.2s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        transition: transform 0.15s ease, border-color 0.15s ease;
     }}
 
     .f1-kpi-card:hover {{
@@ -84,22 +140,22 @@ def apply_custom_css():
         position: absolute;
         top: 0;
         left: 0;
-        width: 4px;
+        width: 3px;
         height: 100%;
         background: var(--accent-red);
     }}
 
     .f1-kpi-title {{
-        font-size: 0.82rem;
+        font-size: 0.75rem;
         text-transform: uppercase;
-        letter-spacing: 1.2px;
+        letter-spacing: 1px;
         color: var(--text-secondary);
         font-weight: 600;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
     }}
 
     .f1-kpi-value {{
-        font-size: 1.85rem;
+        font-size: 1.55rem;
         font-weight: 900;
         color: #ffffff;
         font-family: var(--f1-font);
@@ -107,40 +163,9 @@ def apply_custom_css():
     }}
 
     .f1-kpi-subtitle {{
-        font-size: 0.78rem;
+        font-size: 0.74rem;
         color: var(--text-muted);
         margin-top: 4px;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-    }}
-
-    /* Content Cards */
-    .f1-card {{
-        background: var(--bg-card);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    }}
-
-    .f1-card-header {{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 12px;
-        margin-bottom: 16px;
-    }}
-
-    .f1-card-title {{
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: #ffffff;
-        display: flex;
-        align-items: center;
-        gap: 8px;
     }}
 
     /* Tyre Compound Badges */
@@ -148,11 +173,11 @@ def apply_custom_css():
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 22px;
-        height: 22px;
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
         font-weight: 900;
-        font-size: 0.72rem;
+        font-size: 0.7rem;
         margin: 0 3px;
         border: 2px solid;
     }}
@@ -186,14 +211,14 @@ def apply_custom_css():
     div[data-testid="stTabs"] button {{
         font-family: var(--f1-font);
         font-weight: 700;
-        font-size: 0.95rem;
-        letter-spacing: 0.5px;
+        font-size: 0.9rem;
+        letter-spacing: 0.4px;
         color: var(--text-secondary);
-        padding: 10px 18px;
+        padding: 8px 16px;
         border-radius: 4px 4px 0 0;
         background: transparent;
         border: none;
-        transition: all 0.2s ease;
+        transition: all 0.15s ease;
     }}
 
     div[data-testid="stTabs"] button[aria-selected="true"] {{
@@ -204,91 +229,104 @@ def apply_custom_css():
 
     /* Sidebar Styling */
     section[data-testid="stSidebar"] {{
-        background-color: #0e121a;
+        background-color: #0d1118;
         border-right: 1px solid var(--border-color);
     }}
 
     .f1-sidebar-brand {{
-        text-align: center;
-        padding: 16px 0 20px 0;
+        text-align: left;
+        padding: 8px 4px 14px 4px;
         border-bottom: 1px solid var(--border-color);
-        margin-bottom: 20px;
+        margin-bottom: 14px;
     }}
 
     .f1-brand-title {{
         color: #ffffff;
-        font-size: 1.35rem;
+        font-size: 1.25rem;
         font-weight: 900;
-        letter-spacing: 1.5px;
+        letter-spacing: 1.2px;
         text-transform: uppercase;
         margin: 0;
     }}
 
     .f1-brand-tagline {{
         color: var(--accent-red);
-        font-size: 0.72rem;
+        font-size: 0.7rem;
         font-weight: 700;
-        letter-spacing: 2px;
+        letter-spacing: 1.8px;
         text-transform: uppercase;
-        margin-top: 3px;
-    }}
-
-    /* Data Table Styling */
-    .dataframe {{
-        background-color: var(--bg-card) !important;
-        color: #ffffff !important;
-        border: 1px solid var(--border-color) !important;
-        font-family: var(--mono-font) !important;
-        font-size: 0.85rem !important;
+        margin-top: 2px;
     }}
 
     /* Custom Callouts / Executive Insight Boxes */
     .f1-insight-box {{
-        background: rgba(225, 6, 0, 0.06);
+        background: rgba(19, 24, 34, 0.85);
+        border: 1px solid var(--border-color);
         border-left: 4px solid var(--accent-red);
-        border-radius: 0 6px 6px 0;
-        padding: 14px 18px;
-        margin: 16px 0;
-        color: #e5e7eb;
-        font-size: 0.92rem;
-        line-height: 1.5;
+        border-radius: 6px;
+        padding: 12px 16px;
+        margin: 8px 0 16px 0;
+        color: #d1d5db;
+        font-size: 0.88rem;
+        line-height: 1.45;
     }}
 
     .f1-insight-title {{
         font-weight: 700;
         color: #ffffff;
-        margin-bottom: 4px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
+        margin-bottom: 3px;
+        font-size: 0.94rem;
     }}
     </style>
     """
     st.markdown(css, unsafe_allow_html=True)
 
 
-def get_plotly_f1_layout(title: str = "", height: int = 420) -> dict:
-    """Returns Plotly layout dictionary styled with Formula 1 dark pit-wall aesthetics."""
+def render_active_filter_banner(filters: dict):
+    """Renders a sleek horizontal status strip displaying active Year, Team, Driver, and Sort Order."""
+    yr = filters.get("selected_year", "All Years")
+    team = filters.get("selected_team", "All Teams")
+    drvs = filters.get("selected_drivers", ["All Drivers"])
+    drv_str = ", ".join(drvs[:3]) + (f" (+{len(drvs)-3})" if len(drvs) > 3 else "") if isinstance(drvs, list) else str(drvs)
+    ev = filters.get("selected_event", "All Events")
+    sort_lbl = "Chronological (1950 -> 2026)" if filters.get("year_sort_ascending", False) else "Newest First (2026 -> 1950)"
+
+    st.markdown(
+        f"""
+        <div class="f1-filter-banner">
+            <span class="f1-filter-pill">📅 Year: <b>{yr}</b></span>
+            <span class="f1-filter-pill">🏎️ Team: <b>{team}</b></span>
+            <span class="f1-filter-pill">👤 Driver: <b>{drv_str}</b></span>
+            <span class="f1-filter-pill">📍 Grand Prix: <b>{ev}</b></span>
+            <span class="f1-filter-pill">🔃 Year Sort: <b>{sort_lbl}</b></span>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
+def get_plotly_f1_layout(title: str = "", height: int = 400) -> dict:
+    """Returns Plotly layout dictionary styled with clean Formula 1 dark pit-wall aesthetics."""
     return dict(
         title=dict(
             text=f"<b>{title}</b>" if title else "",
-            font=dict(family="Titillium Web, sans-serif", size=15, color="#ffffff"),
+            font=dict(family="Titillium Web, sans-serif", size=14, color="#ffffff"),
             x=0.01,
-            y=0.98,
+            y=0.97,
         ),
         paper_bgcolor=THEME_COLORS["bg_card"],
         plot_bgcolor=THEME_COLORS["bg_card"],
         height=height,
-        margin=dict(l=45, r=30, t=55 if title else 25, b=45),
-        font=dict(family="Titillium Web, sans-serif", color=THEME_COLORS["text-secondary"] if "text-secondary" in THEME_COLORS else "#9aa4b2"),
+        margin=dict(l=42, r=24, t=48 if title else 22, b=40),
+        font=dict(family="Titillium Web, sans-serif", color="#9aa4b2"),
         xaxis=dict(
-            gridcolor="#222b3a",
+            gridcolor="#1e2636",
             zerolinecolor="#283144",
             tickfont=dict(color="#9aa4b2", size=11),
             title_font=dict(color="#ffffff", size=12),
         ),
         yaxis=dict(
-            gridcolor="#222b3a",
+            gridcolor="#1e2636",
             zerolinecolor="#283144",
             tickfont=dict(color="#9aa4b2", size=11),
             title_font=dict(color="#ffffff", size=12),

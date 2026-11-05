@@ -16,6 +16,13 @@ def plot_race_finish_vs_grid(results_df: pd.DataFrame, title: str = "Grid Positi
         return fig
 
     df = results_df.dropna(subset=['GridPosition', 'Position']).copy()
+    df = df[(df['GridPosition'] > 0) & (df['Position'] > 0)]
+    if df.empty:
+        fig = go.Figure()
+        fig.update_layout(get_plotly_f1_layout("No Valid Grid/Finish Records for Filter Selection"))
+        return fig
+    if len(df) > 250:
+        df = df.head(250).copy()
     df['PositionsGained'] = df['GridPosition'] - df['Position']
 
     fig = go.Figure()
@@ -71,11 +78,19 @@ def plot_driver_standings(results_df: pd.DataFrame, title: str = "Driver Champio
         return go.Figure()
 
     standings = (
-        results_df.groupby(['Abbreviation', 'FullName', 'TeamName'])['Points']
+        results_df.groupby(['FullName', 'TeamName'], as_index=False)['Points']
         .sum()
-        .reset_index()
+        .query("Points > 0")
         .sort_values('Points', ascending=True)
+        .tail(25)
     )
+    if standings.empty:
+        standings = (
+            results_df.groupby(['FullName', 'TeamName'], as_index=False)['Points']
+            .sum()
+            .sort_values('Points', ascending=True)
+            .tail(20)
+        )
 
     colors = [TEAM_COLORS.get(t, '#e10600') for t in standings['TeamName']]
 
@@ -103,8 +118,16 @@ def plot_stint_timeline(laps_df: pd.DataFrame, title: str = "Race Tyre Stint & P
     if laps_df.empty or 'Stint' not in laps_df.columns:
         return go.Figure()
 
+    work_laps = laps_df.dropna(subset=['Stint', 'LapNumber']).copy()
+    if 'Year' in work_laps.columns and work_laps['Year'].nunique() > 1:
+        latest_yr = work_laps['Year'].max()
+        work_laps = work_laps[work_laps['Year'] == latest_yr]
+    if 'EventName' in work_laps.columns and work_laps['EventName'].nunique() > 1:
+        first_ev = work_laps['EventName'].iloc[0]
+        work_laps = work_laps[work_laps['EventName'] == first_ev]
+
     stints = (
-        laps_df.dropna(subset=['Stint', 'LapNumber'])
+        work_laps
         .groupby(['Driver', 'Stint', 'Compound'])
         .agg(
             StartLap=('LapNumber', 'min'),
@@ -181,10 +204,11 @@ def plot_tyre_degradation(laps_df: pd.DataFrame, title: str = "Tyre Pace Degrada
             continue
         c_color = TYRE_COMPOUND_COLORS.get(comp, '#ffffff')
 
-        # Scatter samples
+        # Scatter samples (cap visual scatter markers for smooth UI rendering)
+        c_sample = c_df.sample(min(len(c_df), 1200), random_state=42) if len(c_df) > 1200 else c_df
         fig.add_trace(go.Scatter(
-            x=c_df['TyreLife'],
-            y=c_df['LapTimeSec'],
+            x=c_sample['TyreLife'],
+            y=c_sample['LapTimeSec'],
             mode='markers',
             name=f"{comp} Laps",
             marker=dict(color=c_color, size=6, opacity=0.35),
@@ -220,8 +244,12 @@ def plot_lap_pace_progression(laps_df: pd.DataFrame, drivers: list = None, title
         return go.Figure()
 
     df = laps_df.copy()
+    if 'Year' in df.columns and df['Year'].nunique() > 1:
+        df = df[df['Year'] == df['Year'].max()]
+    if 'EventName' in df.columns and df['EventName'].nunique() > 1:
+        df = df[df['EventName'] == df['EventName'].iloc[0]]
     if drivers:
-        df = df[df['Driver'].isin(drivers)]
+        df = df[df['Driver'].isin(drivers) | (df['FullName'].isin(drivers) if 'FullName' in df.columns else False)]
 
     # Filter out pit laps from lines but show pit markers
     clean_laps = df[df['LapTimeSec'] > 0].copy()

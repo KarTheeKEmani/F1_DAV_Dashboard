@@ -1,0 +1,206 @@
+constructorId,constructorRef,name,nationality,url
+1,alfa,Alfa Romeo,Swiss,https://en.wikipedia.org/wiki/Alfa_Romeo_in_Formula_One
+2,maserati,Maserati,Italian,https://en.wikipedia.org/wiki/Maserati
+3,alta,Alta,British,https://en.wikipedia.org/wiki/Alta_Car_and_Engineering_Company
+4,era,ERA,British,https://en.wikipedia.org/wiki/English_Racing_Automobiles
+5,lago,Talbot-Lago,French,https://en.wikipedia.org/wiki/Talbot-Lago
+6,ferrari,Ferrari,Italian,https://en.wikipedia.org/wiki/Scuderia_Ferrari
+7,cooper,Cooper,British,https://en.wikipedia.org/wiki/Cooper_Car_Company
+8,simca,Simca,French,https://en.wikipedia.org/wiki/Simca
+9,watson,Watson,American,https://en.wikipedia.org/wiki/A._J._Watson
+10,kurtis_kraft,Kurtis Kraft,American,https://en.wikipedia.org/wiki/Kurtis_Kraft
+11,deidt,Deidt,American,https://en.wikipedia.org/wiki/Emil_Diedt
+12,adams,Adams,American,https://en.wikipedia.org/wiki/Adams_(constructor)
+13,snowberger,Snowberger,American,https://en.wikipedia.org/wiki/Russ_Snowberger
+14,wetteroth,Wetteroth,American,https://en.wikipedia.org/wiki/Wetteroth
+15,olson,Olson,American,https://en.wikipedia.org/wiki/Olson_(constructor)
+16,rae,Rae,American,https://en.wikipedia.org/wiki/Johnny_Rae_(motorsport)
+17,ewing,Ewing,American,https://en.wikipedia.org/wiki/Wayne_Ewing
+18,langley,Langley,American,https://en.wikipedia.org/wiki/Langley_(constructor)
+19,lesovsky,Lesovsky,American,https://en.wikipedia.org/wiki/Lesovsky
+20,stevens,Stevens,American,https://en.wikipedia.org/wiki/Myron_Stevens
+21,marchese,Marchese,American,https://en.wikipedia.org/wiki/Carl_Marchese
+22,nichels,Nichels,American,https://en.wikipedia.org/wiki/Nichels
+23,moore,Moore,American,https://en.wikipedia.org/wiki/Lou_Moore
+24,milano,Milano,Italian,https://en.wikipedia.org/wiki/Scuderia_Milano
+25,hwm,HWM,British,https://en.wikipedia.org/wiki/Hersham_and_Walton_Motors
+26,veritas,Veritas,German,https://en.wikipedia.org/wiki/Veritas_(automobile)
+27,trevis,Trevis,American,https://en.wikipedia.org/wiki/Trevis
+28,kuzma,Kuzma,American,https://en.wikipedia.org/wiki/Eddie_Kuzma
+29,schroeder,Schroeder,American,https://en.wikipedia.org/wiki/Gordon_Schroeder
+30,pawl,Pawl,American,https://en.wikipedia.org/wiki/Pawl_(constructor)
+31,bromme,Bromme,American,https://en.wikipedia.org/wiki/Bromme
+32,hall,Hall,American,https://en.wikipedia.org/wiki/Hall_(constructor)
+33,sherman,Sherman,American,https://en.wikipedia.org/wiki/Roy_Sherman
+34,brm,BRM,British,https://en.wikipedia.org/wiki/British_Racing_Motors
+35,osca,OSCA,Italian,https://en.wikipedia.org/wiki/O.S.C.A.
+36,gordini,Gordini,French,https://en.wikipedia.org/wiki/Gordini
+37,afm,AFM,German,https://en.wikipedia.org/wiki/Alex_von_Falkenhausen_Motorenbau
+38,frazer_nash,Frazer Nash,British,https://en.wikipedia.org/wiki/Frazer_Nash
+39,butterworth,Aston Butterworth,British,https://en.wikipedia.org/wiki/Aston_Butterworth
+40,connaught,Connaught,British,https://en.wikipedia.org/wiki/Connaught_Engineering
+41,bmw,BMW,German,https://en.wikipedia.org/wiki/BMW
+43,turner,Turner,American,https://en.wikipedia.org/wiki/Turner_(constructor)
+44,del_roy,Del Roy,American,https://en.wikipedia.org/wiki/Frank_DelRoy
+45,emw,EMW,East German,https://en.wikipedia.org/wiki/Eisenacher_Motorenwerk
+46,pankratz,Pankratz,American,https://en.wikipedia.org/wiki/Pankratz
+47,phillips,Phillips,American,https://en.wikipedia.org/wiki/Phillips_(constructor)
+48,mercedes,Mercedes,German,https://en.wikipedia.org/wiki/Mercedes-Benz_in_Formula_One
+49,vanwall,Vanwall,British,https://en.wikipedia.org/wiki/Vanwall
+50,klenk,Klenk,German,https://en.wikipedia.org/wiki/Klenk
+51,lancia,Lancia,Italian,https://en.wikipedia.org/wiki/Scuderia_Lancia
+52,epperly,Epperly,American,https://en.wikipedia.org/wiki/Epperly
+53,arzani-volpini,Arzani-Volpini,Italian,https://en.wikipedia.org/wiki/Arzani-Volpini
+54,bugatti,Bugatti,French,https://en.wikipedia.org/wiki/Bugatti
+55,emeryson,Emeryson,British,https://en.wikipedia.org/wiki/Emeryson
+56,dunn,Dunn,American,https://en.wikipedia.org/wiki/Dunn_Engineering
+57,porsche,Porsche,German,https://en.wikipedia.org/wiki/Porsche_in_motorsport
+58,team_lotus,Team Lotus,British,https://en.wikipedia.org/wiki/Team_Lotus
+59,cooper-climax,Cooper-Climax,British,https://en.wikipedia.org/wiki/Cooper_Car_Company
+60,cooper-maserati,Cooper-Maserati,British,https://en.wikipedia.org/wiki/Cooper_Car_Company
+61,vhristensen,Christensen,American,https://en.wikipedia.org/wiki/Christensen_(constructor)
+62,elder,Elder,American,https://en.wikipedia.org/wiki/Edgar_Elder
+63,sutton,Sutton,American,https://en.wikipedia.org/wiki/Sutton_(constructor)
+64,aston_martin,Aston Martin,British,https://en.wikipedia.org/wiki/Aston_Martin_in_Formula_One
+65,jbw,JBW,British,https://en.wikipedia.org/wiki/JBW
+67,cooper-borgward,Cooper-Borgward,British,https://en.wikipedia.org/wiki/Cooper_Car_Company
+68,tec-mec,Tec-Mec,Italian,https://en.wikipedia.org/wiki/Tec-Mec
+69,cooper-osca,Cooper-OSCA,British,https://en.wikipedia.org/wiki/Cooper_Car_Company
+70,behra-porsche,Behra-Porsche,Italian,https://en.wikipedia.org/wiki/Behra-Porsche
+71,scarab,Scarab,American,https://en.wikipedia.org/wiki/Scarab_(constructor)
+72,cooper-castellotti,Cooper-Castellotti,British,https://en.wikipedia.org/wiki/Cooper_Car_Company
+73,meskowski,Meskowski,American,https://en.wikipedia.org/wiki/Meskowski
+74,lotus-climax,Lotus-Climax,British,https://en.wikipedia.org/wiki/Team_Lotus
+75,de_tomaso-osca,De Tomaso-Osca,Italian,https://en.wikipedia.org/wiki/De_Tomaso
+76,ferguson,Ferguson,British,https://en.wikipedia.org/wiki/Ferguson_Research
+77,gilby,Gilby,British,https://en.wikipedia.org/wiki/Gilby
+78,mbm,MBM,Swiss,https://en.wikipedia.org/wiki/Monteverdi_(automobile)
+79,lotus-maserati,Lotus-Maserati,British,https://en.wikipedia.org/wiki/Team_Lotus
+80,de_tomaso-alfa_romeo,De Tomaso-Alfa Romeo,Italian,https://en.wikipedia.org/wiki/De_Tomaso
+81,lola,Lola,British,https://en.wikipedia.org/wiki/MasterCard_Lola
+82,lotus-brm,Lotus-BRM,British,https://en.wikipedia.org/wiki/Team_Lotus
+83,brabham,Brabham,British,https://en.wikipedia.org/wiki/Brabham
+84,enb,ENB,Belgian,https://en.wikipedia.org/wiki/Écurie_Nationale_Belge
+85,tomaso,De Tomaso,Italian,https://en.wikipedia.org/wiki/De_Tomaso
+86,lotus-borgward,Lotus-Borgward,British,https://en.wikipedia.org/wiki/Team_Lotus
+87,lds,LDS,South African,https://en.wikipedia.org/wiki/LDS_(automobile)
+88,cooper-alfa_romeo,Cooper-Alfa Romeo,British,https://en.wikipedia.org/wiki/Cooper_Car_Company
+89,ats,ATS,Italian,https://en.wikipedia.org/wiki/ATS_Wheels
+90,scirocco,Scirocco,British,https://en.wikipedia.org/wiki/Scirocco-Powell
+91,brp,BRP,British,https://en.wikipedia.org/wiki/British_Racing_Partnership
+93,stebro,Stebro,Canadian,https://en.wikipedia.org/wiki/Stebro
+94,lotus-ford,Lotus-Ford,British,https://en.wikipedia.org/wiki/Team_Lotus
+95,brabham-climax,Brabham-Climax,British,https://en.wikipedia.org/wiki/Brabham
+96,brabham-brm,Brabham-BRM,British,https://en.wikipedia.org/wiki/Brabham
+97,brabham-ford,Brabham-Ford,British,https://en.wikipedia.org/wiki/Brabham
+98,honda,Honda,Japanese,https://en.wikipedia.org/wiki/Honda_in_Formula_One
+99,derrington,Derrington,British,https://en.wikipedia.org/wiki/Derrington-Francis
+100,re,RE,Rhodesian,https://en.wikipedia.org/wiki/Realpha
+101,lds-climax,LDS-Climax,South African,https://en.wikipedia.org/wiki/LDS_(automobile)
+102,lds-alfa_romeo,LDS-Alfa Romeo,South African,https://en.wikipedia.org/wiki/LDS_(automobile)
+104,mclaren-ford,McLaren-Ford,British,https://en.wikipedia.org/wiki/McLaren
+105,brabham-repco,Brabham-Repco,British,https://en.wikipedia.org/wiki/Brabham
+106,mclaren-seren,McLaren-Serenissima,British,https://en.wikipedia.org/wiki/McLaren
+107,eagle-climax,Eagle-Climax,American,https://en.wikipedia.org/wiki/All_American_Racers
+108,shannon,Shannon,British,https://en.wikipedia.org/wiki/Shannon_Racing_Cars
+109,cooper-ferrari,Cooper-Ferrari,British,https://en.wikipedia.org/wiki/Cooper_Car_Company
+110,eagle-weslake,Eagle-Weslake,American,https://en.wikipedia.org/wiki/All_American_Racers
+111,matra,Matra,French,https://en.wikipedia.org/wiki/Matra
+112,mclaren-brm,McLaren-BRM,British,https://en.wikipedia.org/wiki/McLaren
+113,cooper-ats,Cooper-ATS,British,https://en.wikipedia.org/wiki/Cooper_Car_Company
+114,protos,Protos,British,https://en.wikipedia.org/wiki/Protos_(constructor)
+115,cooper-brm,Cooper-BRM,British,https://en.wikipedia.org/wiki/Cooper_Car_Company
+116,matra-ford,Matra-Ford,French,https://en.wikipedia.org/wiki/Matra
+117,mclaren,McLaren,British,https://en.wikipedia.org/wiki/McLaren
+118,brm-ford,BRM-Ford,British,https://en.wikipedia.org/wiki/British_Racing_Motors
+119,march,March,British,https://en.wikipedia.org/wiki/March_Engineering
+120,mclaren-alfa_romeo,McLaren-Alfa Romeo,British,https://en.wikipedia.org/wiki/McLaren
+121,bellasi,Bellasi,Swiss,https://en.wikipedia.org/wiki/Bellasi
+122,surtees,Surtees,British,https://en.wikipedia.org/wiki/Surtees
+123,tyrrell,Tyrrell,British,https://en.wikipedia.org/wiki/Tyrrell_Racing
+124,march-ford,March-Ford,British,https://en.wikipedia.org/wiki/March_Engineering
+125,march-alfa_romeo,March-Alfa Romeo,British,https://en.wikipedia.org/wiki/March_Engineering
+126,lotus-pw,Lotus-Pratt &amp; Whitney,British,https://en.wikipedia.org/wiki/Team_Lotus
+127,tecno,Tecno,Italian,https://en.wikipedia.org/wiki/Tecno
+128,politoys,Politoys,British,https://en.wikipedia.org/wiki/Frank_Williams_Racing_Cars
+129,connew,Connew,British,https://en.wikipedia.org/wiki/Connew
+130,iso_marlboro,Iso Marlboro,British,https://en.wikipedia.org/wiki/Frank_Williams_Racing_Cars
+131,shadow,Shadow,British,https://en.wikipedia.org/wiki/Shadow_Racing_Cars
+132,ensign,Ensign,British,https://en.wikipedia.org/wiki/Ensign_Racing
+133,hesketh,Hesketh,British,https://en.wikipedia.org/wiki/Hesketh_Racing
+134,amon,Amon,New Zealander,https://en.wikipedia.org/wiki/Chris_Amon_Racing
+135,trojan,Trojan,British,https://en.wikipedia.org/wiki/Trojan–Tauranac_Racing
+136,token,Token,British,https://en.wikipedia.org/wiki/Token_Racing
+137,maki,Maki,Japanese,https://en.wikipedia.org/wiki/Maki_Engineering
+138,lyncar,Lyncar,British,https://en.wikipedia.org/wiki/Lyncar
+139,penske,Penske,American,https://en.wikipedia.org/wiki/Team_Penske
+140,parnelli,Parnelli,American,https://en.wikipedia.org/wiki/Vel's_Parnelli_Jones_Racing
+141,williams,Williams,British,https://en.wikipedia.org/wiki/Williams_Racing
+142,fittipaldi,Fittipaldi,Brazilian,https://en.wikipedia.org/wiki/Fittipaldi_Automotive
+143,shadow-ford,Shadow-Ford,British,https://en.wikipedia.org/wiki/Shadow_Racing_Cars
+144,hill,Embassy Hill,British,https://en.wikipedia.org/wiki/Embassy_Hill
+145,shadow-matra,Shadow-Matra,British,https://en.wikipedia.org/wiki/Shadow_Racing_Cars
+146,ligier,Ligier,French,https://en.wikipedia.org/wiki/Ligier
+147,brabham-alfa_romeo,Brabham-Alfa Romeo,British,https://en.wikipedia.org/wiki/Brabham
+148,wolf,Wolf,Canadian,https://en.wikipedia.org/wiki/Walter_Wolf_Racing
+149,boro,Boro,Dutch,https://en.wikipedia.org/wiki/Boro_(Formula_One)
+150,kojima,Kojima,Japanese,https://en.wikipedia.org/wiki/Kojima_Engineering
+151,lec,LEC,British,https://en.wikipedia.org/wiki/LEC_Refrigeration_Racing
+152,renault,Renault,French,https://en.wikipedia.org/wiki/Renault_in_Formula_One
+155,theodore,Theodore,Hong Kong,https://en.wikipedia.org/wiki/Theodore_Racing
+156,merzario,Merzario,Italian,https://en.wikipedia.org/wiki/Merzario
+157,arrows,Arrows,British,https://en.wikipedia.org/wiki/Arrows_Grand_Prix_International
+158,martini,Martini,French,https://en.wikipedia.org/wiki/Automobiles_Martini
+160,rebaque,Rebaque,Mexican,https://en.wikipedia.org/wiki/Rebaque
+161,osella,Osella,Italian,https://en.wikipedia.org/wiki/Osella
+162,toleman,Toleman,British,https://en.wikipedia.org/wiki/Toleman
+163,ram,RAM,British,https://en.wikipedia.org/wiki/RAM_Racing
+164,spirit,Spirit,British,https://en.wikipedia.org/wiki/Spirit_Racing
+165,minardi,Minardi,Italian,https://en.wikipedia.org/wiki/Minardi
+166,zakspeed,Zakspeed,German,https://en.wikipedia.org/wiki/Zakspeed
+167,benetton,Benetton,Italian,https://en.wikipedia.org/wiki/Benetton_Formula
+168,ags,AGS,French,https://en.wikipedia.org/wiki/Automobiles_Gonfaronnaises_Sportives
+169,larrousse,Larrousse,French,https://en.wikipedia.org/wiki/Larrousse
+170,coloni,Coloni,Italian,https://en.wikipedia.org/wiki/Scuderia_Coloni
+171,dallara,Dallara,Italian,https://en.wikipedia.org/wiki/Dallara
+172,eurobrun,Euro Brun,Italian,https://en.wikipedia.org/wiki/EuroBrun
+173,rial,Rial,German,https://en.wikipedia.org/wiki/Rial_Racing
+174,onyx,Onyx,British,https://en.wikipedia.org/wiki/Onyx_Grand_Prix
+175,leyton,Leyton House,British,https://en.wikipedia.org/wiki/Leyton_House_Racing
+177,jordan,Jordan,Irish,https://en.wikipedia.org/wiki/Jordan_Grand_Prix
+178,footwork,Footwork,British,https://en.wikipedia.org/wiki/Footwork_Arrows
+179,fondmetal,Fondmetal,Italian,https://en.wikipedia.org/wiki/Fondmetal
+180,lambo,Lambo,Italian,https://en.wikipedia.org/wiki/Modena_(racing_team)
+181,moda,Andrea Moda,Italian,https://en.wikipedia.org/wiki/Andrea_Moda_Formula
+182,sauber,Sauber,Swiss,https://en.wikipedia.org/wiki/Sauber_Motorsport
+183,pacific,Pacific,British,https://en.wikipedia.org/wiki/Pacific_Racing
+184,simtek,Simtek,British,https://en.wikipedia.org/wiki/Simtek
+185,forti,Forti,Italian,https://en.wikipedia.org/wiki/Forti
+186,stewart,Stewart,British,https://en.wikipedia.org/wiki/Stewart_Grand_Prix
+187,prost,Prost,French,https://en.wikipedia.org/wiki/Prost_Grand_Prix
+188,bar,BAR,British,https://en.wikipedia.org/wiki/British_American_Racing
+189,jaguar,Jaguar,British,https://en.wikipedia.org/wiki/Jaguar_Racing
+190,toyota,Toyota,Japanese,https://en.wikipedia.org/wiki/Toyota_Racing
+191,red_bull,Red Bull,Austrian,https://en.wikipedia.org/wiki/Red_Bull_Racing
+192,bmw_sauber,BMW Sauber,German,https://en.wikipedia.org/wiki/BMW_in_Formula_One
+193,super_aguri,Super Aguri,Japanese,https://en.wikipedia.org/wiki/Super_Aguri_F1
+194,mf1,MF1,Russian,https://en.wikipedia.org/wiki/Midland_F1_Racing
+195,toro_rosso,Toro Rosso,Italian,https://en.wikipedia.org/wiki/Scuderia_Toro_Rosso
+196,spyker_mf1,Spyker MF1,Dutch,https://en.wikipedia.org/wiki/Midland_F1_Racing
+197,spyker,Spyker,Dutch,https://en.wikipedia.org/wiki/Spyker_F1
+198,force_india,Force India,Indian,https://en.wikipedia.org/wiki/Racing_Point_Force_India
+199,brawn,Brawn,British,https://en.wikipedia.org/wiki/Brawn_GP
+200,hrt,HRT,Spanish,https://en.wikipedia.org/wiki/HRT_Formula_1_Team
+201,virgin,Virgin,British,https://en.wikipedia.org/wiki/Virgin_Racing
+202,lotus_racing,Lotus,Malaysian,https://en.wikipedia.org/wiki/Lotus_Racing
+203,caterham,Caterham,Malaysian,https://en.wikipedia.org/wiki/Caterham_F1
+204,lotus_f1,Lotus F1,British,https://en.wikipedia.org/wiki/Lotus_F1
+205,marussia,Marussia,Russian,https://en.wikipedia.org/wiki/Marussia_F1
+206,manor,Manor Marussia,British,https://en.wikipedia.org/wiki/Manor_Motorsport
+207,haas,Haas F1 Team,American,https://en.wikipedia.org/wiki/Haas_F1_Team
+208,racing_point,Racing Point,British,https://en.wikipedia.org/wiki/Racing_Point_F1_Team
+209,alphatauri,AlphaTauri,Italian,https://en.wikipedia.org/wiki/Scuderia_AlphaTauri
+210,alpine,Alpine F1 Team,French,https://en.wikipedia.org/wiki/Alpine_F1_Team
+211,rb,RB F1 Team,Italian,https://en.wikipedia.org/wiki/Racing_Bulls
+215,audi,Audi,German,https://en.wikipedia.org/wiki/Audi_in_Formula_One
+216,cadillac,Cadillac F1 Team,American,https://en.wikipedia.org/wiki/Cadillac_in_Formula_One

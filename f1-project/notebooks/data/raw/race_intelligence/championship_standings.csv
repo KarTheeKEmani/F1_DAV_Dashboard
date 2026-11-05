@@ -1,0 +1,312 @@
+season,driver_position,driver,team,points,wins,podiums,pole_positions,dnfs,champion
+2010,1,Max Verstappen,Red Bull Racing,306,8,13,8,1,1
+2010,2,Sergio Perez,Red Bull Racing,244,0,9,0,0,0
+2010,3,Lando Norris,McLaren,226,4,10,4,4,0
+2010,4,Oscar Piastri,McLaren,199,0,5,0,2,0
+2010,5,Charles Leclerc,Ferrari,166,3,4,3,2,0
+2010,6,Esteban Ocon,Alpine,153,1,5,1,2,0
+2010,7,Carlos Sainz,Ferrari,143,0,3,0,1,0
+2010,8,Pierre Gasly,Alpine,117,0,1,0,0,0
+2010,9,Lewis Hamilton,Mercedes,52,0,0,0,1,0
+2010,10,George Russell,Mercedes,31,0,0,0,2,0
+2010,11,Alex Albon,Williams,9,0,0,0,1,0
+2010,12,Valtteri Bottas,Kick Sauber,8,0,0,0,1,0
+2010,13,Fernando Alonso,Aston Martin,6,0,0,0,0,0
+2010,14,Yuki Tsunoda,RB (AlphaTauri),6,0,0,0,1,0
+2010,15,Zhou Guanyu,Kick Sauber,5,0,0,0,1,0
+2010,16,Liam Lawson,RB (AlphaTauri),3,0,0,0,1,0
+2010,17,Lance Stroll,Aston Martin,2,0,0,0,2,0
+2011,1,Max Verstappen,Red Bull Racing,407,14,17,14,0,1
+2011,2,Sergio Perez,Red Bull Racing,262,0,12,0,2,0
+2011,3,Lando Norris,McLaren,204,2,9,2,1,0
+2011,4,Carlos Sainz,Ferrari,180,0,1,0,2,0
+2011,5,Charles Leclerc,Ferrari,178,1,6,1,1,0
+2011,6,Oscar Piastri,McLaren,150,0,2,0,2,0
+2011,7,Esteban Ocon,Alpine,134,1,3,1,0,0
+2011,8,Pierre Gasly,Alpine,97,0,1,0,0,0
+2011,9,Lewis Hamilton,Mercedes,45,0,0,0,0,0
+2011,10,Alex Albon,Williams,30,0,0,0,1,0
+2011,11,George Russell,Mercedes,28,0,0,0,2,0
+2011,12,Valtteri Bottas,Kick Sauber,16,0,0,0,0,0
+2011,13,Zhou Guanyu,Kick Sauber,10,0,0,0,0,0
+2011,14,Lance Stroll,Aston Martin,0,0,0,0,0,0
+2011,15,Fernando Alonso,Aston Martin,0,0,0,0,1,0
+2011,16,Liam Lawson,RB (AlphaTauri),0,0,0,0,2,0
+2011,17,Yuki Tsunoda,RB (AlphaTauri),0,0,0,0,1,0
+2012,1,Lando Norris,McLaren,285,6,12,6,0,1
+2012,2,Charles Leclerc,Ferrari,228,4,8,4,2,0
+2012,3,Oscar Piastri,McLaren,214,0,6,0,1,0
+2012,4,Max Verstappen,Red Bull Racing,211,3,9,3,1,0
+2012,5,Carlos Sainz,Ferrari,179,0,4,0,4,0
+2012,6,Esteban Ocon,Alpine,168,4,5,4,0,0
+2012,7,Sergio Perez,Red Bull Racing,139,0,2,0,3,0
+2012,8,Pierre Gasly,Alpine,106,0,4,0,3,0
+2012,9,Lewis Hamilton,Mercedes,57,0,1,0,0,0
+2012,10,George Russell,Mercedes,41,0,0,0,1,0
+2012,11,Valtteri Bottas,Kick Sauber,38,0,0,0,0,0
+2012,12,Zhou Guanyu,Kick Sauber,27,0,0,0,2,0
+2012,13,Alex Albon,Williams,6,0,0,0,0,0
+2012,14,Yuki Tsunoda,RB (AlphaTauri),2,0,0,0,0,0
+2012,15,Fernando Alonso,Aston Martin,2,0,0,0,0,0
+2012,16,Lance Stroll,Aston Martin,1,0,0,0,0,0
+2012,17,Liam Lawson,RB (AlphaTauri),1,0,0,0,2,0
+2013,1,Max Verstappen,Red Bull Racing,401,15,16,15,1,1
+2013,2,Sergio Perez,Red Bull Racing,310,0,16,0,0,0
+2013,3,Charles Leclerc,Ferrari,186,2,6,2,1,0
+2013,4,Lewis Hamilton,Mercedes,146,0,5,0,2,0
+2013,5,Carlos Sainz,Ferrari,143,0,2,0,2,0
+2013,6,George Russell,Mercedes,135,0,0,0,0,0
+2013,7,Esteban Ocon,Alpine,107,0,2,0,1,0
+2013,8,Lando Norris,McLaren,89,0,3,0,0,0
+2013,9,Pierre Gasly,Alpine,81,0,0,0,1,0
+2013,10,Oscar Piastri,McLaren,58,0,0,0,1,0
+2013,11,Valtteri Bottas,Kick Sauber,27,0,1,0,0,0
+2013,12,Zhou Guanyu,Kick Sauber,20,0,0,0,0,0
+2013,13,Yuki Tsunoda,RB (AlphaTauri),19,0,0,0,1,0
+2013,14,Liam Lawson,RB (AlphaTauri),13,0,0,0,5,0
+2013,15,Fernando Alonso,Aston Martin,6,0,0,0,0,0
+2013,16,Lance Stroll,Aston Martin,4,0,0,0,0,0
+2013,17,Alex Albon,Williams,1,0,0,0,2,0
+2014,1,Lewis Hamilton,Mercedes,409,15,17,15,1,1
+2014,2,George Russell,Mercedes,295,0,15,0,1,0
+2014,3,Carlos Sainz,Ferrari,282,2,9,2,1,0
+2014,4,Alex Albon,Williams,143,0,2,0,1,0
+2014,5,Charles Leclerc,Ferrari,107,0,2,0,2,0
+2014,6,Esteban Ocon,Alpine,89,0,3,0,2,0
+2014,7,Lando Norris,McLaren,75,0,2,0,1,0
+2014,8,Pierre Gasly,Alpine,72,0,0,0,1,0
+2014,9,Oscar Piastri,McLaren,46,0,0,0,3,0
+2014,10,Max Verstappen,Red Bull Racing,37,0,1,0,2,0
+2014,11,Yuki Tsunoda,RB (AlphaTauri),34,0,0,0,2,0
+2014,12,Sergio Perez,Red Bull Racing,31,0,0,0,2,0
+2014,13,Valtteri Bottas,Kick Sauber,30,0,0,0,2,0
+2014,14,Liam Lawson,RB (AlphaTauri),23,0,0,0,1,0
+2014,15,Fernando Alonso,Aston Martin,23,0,1,0,0,0
+2014,16,Zhou Guanyu,Kick Sauber,21,0,0,0,1,0
+2014,17,Lance Stroll,Aston Martin,16,0,0,0,2,0
+2015,1,Lewis Hamilton,Mercedes,404,15,16,15,1,1
+2015,2,George Russell,Mercedes,310,0,16,0,0,0
+2015,3,Carlos Sainz,Ferrari,259,0,11,0,2,0
+2015,4,Max Verstappen,Red Bull Racing,152,0,4,0,0,0
+2015,5,Alex Albon,Williams,126,0,0,0,2,0
+2015,6,Charles Leclerc,Ferrari,121,2,3,2,0,0
+2015,7,Sergio Perez,Red Bull Racing,103,0,0,0,2,0
+2015,8,Esteban Ocon,Alpine,68,0,0,0,1,0
+2015,9,Yuki Tsunoda,RB (AlphaTauri),56,0,2,0,0,0
+2015,10,Pierre Gasly,Alpine,50,0,0,0,0,0
+2015,11,Liam Lawson,RB (AlphaTauri),30,0,0,0,1,0
+2015,12,Valtteri Bottas,Kick Sauber,29,0,1,0,0,0
+2015,13,Zhou Guanyu,Kick Sauber,22,0,0,0,0,0
+2015,14,Lando Norris,McLaren,14,0,0,0,1,0
+2015,15,Oscar Piastri,McLaren,8,0,0,0,1,0
+2015,16,Fernando Alonso,Aston Martin,6,0,0,0,0,0
+2015,17,Lance Stroll,Aston Martin,0,0,0,0,1,0
+2016,1,Lewis Hamilton,Mercedes,430,16,18,16,0,1
+2016,2,George Russell,Mercedes,314,0,16,0,0,0
+2016,3,Carlos Sainz,Ferrari,205,0,0,0,1,0
+2016,4,Charles Leclerc,Ferrari,172,0,7,0,2,0
+2016,5,Max Verstappen,Red Bull Racing,171,1,7,1,0,0
+2016,6,Sergio Perez,Red Bull Racing,131,0,1,0,0,0
+2016,7,Esteban Ocon,Alpine,70,0,2,0,0,0
+2016,8,Nico Hülkenberg,Haas,57,0,1,0,3,0
+2016,9,Pierre Gasly,Alpine,49,0,0,0,2,0
+2016,10,Kevin Magnussen,Haas,48,0,0,0,1,0
+2016,11,Alex Albon,Williams,43,0,0,0,2,0
+2016,12,Valtteri Bottas,Kick Sauber,36,0,0,0,0,0
+2016,13,Zhou Guanyu,Kick Sauber,25,0,0,0,1,0
+2016,14,Lance Stroll,Aston Martin,2,0,0,0,2,0
+2016,15,Fernando Alonso,Aston Martin,2,0,0,0,3,0
+2016,16,Yuki Tsunoda,RB (AlphaTauri),2,0,0,0,3,0
+2016,17,Lando Norris,McLaren,0,0,0,0,1,0
+2016,18,Liam Lawson,RB (AlphaTauri),0,0,0,0,1,0
+2016,19,Oscar Piastri,McLaren,0,0,0,0,0,0
+2017,1,Lewis Hamilton,Mercedes,322,10,13,10,1,1
+2017,2,Carlos Sainz,Ferrari,272,0,5,0,0,0
+2017,3,Max Verstappen,Red Bull Racing,244,4,9,4,1,0
+2017,4,George Russell,Mercedes,242,0,10,0,0,0
+2017,5,Charles Leclerc,Ferrari,238,4,10,4,2,0
+2017,6,Sergio Perez,Red Bull Racing,168,0,3,0,2,0
+2017,7,Esteban Ocon,Alpine,61,0,1,0,0,0
+2017,8,Alex Albon,Williams,49,0,0,0,2,0
+2017,9,Pierre Gasly,Alpine,39,0,0,0,1,0
+2017,10,Nico Hülkenberg,Haas,37,0,1,0,2,0
+2017,11,Kevin Magnussen,Haas,27,0,0,0,2,0
+2017,12,Fernando Alonso,Aston Martin,8,0,0,0,4,0
+2017,13,Yuki Tsunoda,RB (AlphaTauri),6,0,0,0,0,0
+2017,14,Lando Norris,McLaren,6,0,0,0,1,0
+2017,15,Lance Stroll,Aston Martin,5,0,0,0,1,0
+2017,16,Liam Lawson,RB (AlphaTauri),4,0,0,0,1,0
+2017,17,Oscar Piastri,McLaren,3,0,0,0,2,0
+2017,18,Valtteri Bottas,Kick Sauber,2,0,0,0,2,0
+2017,19,Zhou Guanyu,Kick Sauber,1,0,0,0,1,0
+2018,1,Lewis Hamilton,Mercedes,456,15,19,15,0,1
+2018,2,George Russell,Mercedes,298,0,13,0,2,0
+2018,3,Charles Leclerc,Ferrari,286,3,13,3,1,0
+2018,4,Carlos Sainz,Ferrari,229,0,3,0,3,0
+2018,5,Max Verstappen,Red Bull Racing,193,1,6,1,1,0
+2018,6,Sergio Perez,Red Bull Racing,142,0,1,0,2,0
+2018,7,Nico Hülkenberg,Haas,123,0,2,0,1,0
+2018,8,Kevin Magnussen,Haas,85,0,0,0,3,0
+2018,9,Fernando Alonso,Aston Martin,32,0,0,0,3,0
+2018,10,Lando Norris,McLaren,24,0,0,0,0,0
+2018,11,Lance Stroll,Aston Martin,21,0,0,0,2,0
+2018,12,Yuki Tsunoda,RB (AlphaTauri),18,0,0,0,1,0
+2018,13,Esteban Ocon,Alpine,16,0,0,0,0,0
+2018,14,Oscar Piastri,McLaren,15,0,0,0,1,0
+2018,15,Liam Lawson,RB (AlphaTauri),12,0,0,0,1,0
+2018,16,Pierre Gasly,Alpine,10,0,0,0,2,0
+2018,17,Alex Albon,Williams,8,0,0,0,1,0
+2018,18,Valtteri Bottas,Kick Sauber,8,0,0,0,0,0
+2018,19,Zhou Guanyu,Kick Sauber,4,0,0,0,1,0
+2019,1,Lewis Hamilton,Mercedes,465,15,20,15,0,1
+2019,2,George Russell,Mercedes,346,0,15,0,0,0
+2019,3,Max Verstappen,Red Bull Racing,328,4,15,4,0,0
+2019,4,Sergio Perez,Red Bull Racing,234,0,4,0,2,0
+2019,5,Charles Leclerc,Ferrari,212,2,6,2,3,0
+2019,6,Carlos Sainz,Ferrari,164,0,2,0,2,0
+2019,7,Lando Norris,McLaren,108,1,1,1,0,0
+2019,8,Yuki Tsunoda,RB (AlphaTauri),70,0,1,0,4,0
+2019,9,Oscar Piastri,McLaren,57,0,0,0,3,0
+2019,10,Liam Lawson,RB (AlphaTauri),56,0,0,0,0,0
+2019,11,Nico Hülkenberg,Haas,30,0,0,0,1,0
+2019,12,Fernando Alonso,Aston Martin,22,0,0,0,3,0
+2019,13,Esteban Ocon,Alpine,20,0,0,0,1,0
+2019,14,Kevin Magnussen,Haas,19,0,0,0,1,0
+2019,15,Lance Stroll,Aston Martin,14,0,0,0,0,0
+2019,16,Pierre Gasly,Alpine,11,0,0,0,1,0
+2019,17,Valtteri Bottas,Kick Sauber,2,0,0,0,4,0
+2019,18,Zhou Guanyu,Kick Sauber,1,0,0,0,0,0
+2019,19,Alex Albon,Williams,0,0,0,0,2,0
+2020,1,Lewis Hamilton,Mercedes,463,16,19,16,1,1
+2020,2,George Russell,Mercedes,321,0,15,0,2,0
+2020,3,Max Verstappen,Red Bull Racing,249,2,10,2,0,0
+2020,4,Lando Norris,McLaren,186,1,5,1,0,0
+2020,5,Sergio Perez,Red Bull Racing,171,0,1,0,1,0
+2020,6,Yuki Tsunoda,RB (AlphaTauri),138,2,4,2,1,0
+2020,7,Oscar Piastri,McLaren,116,0,1,0,3,0
+2020,8,Liam Lawson,RB (AlphaTauri),97,0,2,0,1,0
+2020,9,Charles Leclerc,Ferrari,78,0,3,0,1,0
+2020,10,Esteban Ocon,Alpine,70,0,1,0,1,0
+2020,11,Carlos Sainz,Ferrari,58,0,0,0,1,0
+2020,12,Pierre Gasly,Alpine,51,0,0,0,1,0
+2020,13,Fernando Alonso,Aston Martin,30,0,0,0,2,0
+2020,14,Nico Hülkenberg,Haas,21,0,1,0,5,0
+2020,15,Lance Stroll,Aston Martin,20,0,0,0,1,0
+2020,16,Kevin Magnussen,Haas,17,0,0,0,2,0
+2020,17,Valtteri Bottas,Kick Sauber,6,0,0,0,0,0
+2020,18,Zhou Guanyu,Kick Sauber,4,0,0,0,0,0
+2020,19,Alex Albon,Williams,0,0,0,0,0,0
+2021,1,Max Verstappen,Red Bull Racing,364,9,17,9,1,1
+2021,2,Lewis Hamilton,Mercedes,300,6,14,6,1,0
+2021,3,Sergio Perez,Red Bull Racing,254,0,8,0,3,0
+2021,4,George Russell,Mercedes,230,0,6,0,0,0
+2021,5,Lando Norris,McLaren,149,0,4,0,1,0
+2021,6,Charles Leclerc,Ferrari,141,3,3,3,3,0
+2021,7,Carlos Sainz,Ferrari,123,0,3,0,0,0
+2021,8,Oscar Piastri,McLaren,116,0,0,0,0,0
+2021,9,Fernando Alonso,Aston Martin,83,0,0,0,2,0
+2021,10,Lance Stroll,Aston Martin,60,0,0,0,1,0
+2021,11,Esteban Ocon,Alpine,55,1,1,1,2,0
+2021,12,Liam Lawson,RB (AlphaTauri),44,0,1,0,1,0
+2021,13,Pierre Gasly,Alpine,39,0,1,0,1,0
+2021,14,Yuki Tsunoda,RB (AlphaTauri),26,0,0,0,2,0
+2021,15,Alex Albon,Williams,0,0,0,0,1,0
+2021,16,Kevin Magnussen,Haas,0,0,0,0,2,0
+2021,17,Nico Hülkenberg,Haas,0,0,0,0,0,0
+2021,18,Valtteri Bottas,Kick Sauber,0,0,0,0,1,0
+2021,19,Zhou Guanyu,Kick Sauber,0,0,0,0,2,0
+2022,1,Max Verstappen,Red Bull Racing,366,9,15,9,1,1
+2022,2,Charles Leclerc,Ferrari,310,7,11,7,2,0
+2022,3,Sergio Perez,Red Bull Racing,241,0,8,0,3,0
+2022,4,Carlos Sainz,Ferrari,240,0,7,0,5,0
+2022,5,Lewis Hamilton,Mercedes,161,1,6,1,0,0
+2022,6,Fernando Alonso,Aston Martin,139,1,4,1,3,0
+2022,7,Lance Stroll,Aston Martin,123,0,2,0,3,0
+2022,8,George Russell,Mercedes,119,0,1,0,2,0
+2022,9,Lando Norris,McLaren,117,2,2,2,0,0
+2022,10,Oscar Piastri,McLaren,79,0,2,0,2,0
+2022,11,Esteban Ocon,Alpine,49,0,1,0,1,0
+2022,12,Pierre Gasly,Alpine,35,0,0,0,4,0
+2022,13,Nico Hülkenberg,Haas,33,0,1,0,1,0
+2022,14,Kevin Magnussen,Haas,13,0,0,0,3,0
+2022,15,Valtteri Bottas,Kick Sauber,8,0,0,0,0,0
+2022,16,Zhou Guanyu,Kick Sauber,4,0,0,0,1,0
+2022,17,Alex Albon,Williams,0,0,0,0,2,0
+2022,18,Liam Lawson,RB (AlphaTauri),0,0,0,0,3,0
+2022,19,Yuki Tsunoda,RB (AlphaTauri),0,0,0,0,1,0
+2023,1,Max Verstappen,Red Bull Racing,407,11,18,11,0,1
+2023,2,Sergio Perez,Red Bull Racing,300,0,11,0,1,0
+2023,3,Lewis Hamilton,Mercedes,234,4,9,4,1,0
+2023,4,Charles Leclerc,Ferrari,198,4,7,4,3,0
+2023,5,George Russell,Mercedes,170,0,3,0,1,0
+2023,6,Carlos Sainz,Ferrari,159,0,4,0,3,0
+2023,7,Lando Norris,McLaren,149,1,3,1,2,0
+2023,8,Fernando Alonso,Aston Martin,131,1,3,1,1,0
+2023,9,Oscar Piastri,McLaren,117,0,1,0,0,0
+2023,10,Lance Stroll,Aston Martin,96,0,1,0,0,0
+2023,11,Esteban Ocon,Alpine,58,0,1,0,4,0
+2023,12,Yuki Tsunoda,RB (AlphaTauri),43,1,1,1,3,0
+2023,13,Pierre Gasly,Alpine,41,0,0,0,0,0
+2023,14,Liam Lawson,RB (AlphaTauri),30,0,1,0,0,0
+2023,15,Nico Hülkenberg,Haas,6,0,0,0,3,0
+2023,16,Kevin Magnussen,Haas,5,0,0,0,1,0
+2023,17,Valtteri Bottas,Kick Sauber,2,0,0,0,1,0
+2023,18,Alex Albon,Williams,1,0,0,0,0,0
+2023,19,Zhou Guanyu,Kick Sauber,1,0,0,0,0,0
+2024,1,Lando Norris,McLaren,328,6,15,6,2,1
+2024,2,Max Verstappen,Red Bull Racing,314,7,12,7,2,0
+2024,3,Oscar Piastri,McLaren,276,0,7,0,0,0
+2024,4,Sergio Perez,Red Bull Racing,250,0,8,0,1,0
+2024,5,Charles Leclerc,Ferrari,244,4,8,4,1,0
+2024,6,Lewis Hamilton,Mercedes,233,3,7,3,2,0
+2024,7,Carlos Sainz,Ferrari,201,0,4,0,2,0
+2024,8,George Russell,Mercedes,166,0,2,0,1,0
+2024,9,Fernando Alonso,Aston Martin,84,0,1,0,0,0
+2024,10,Lance Stroll,Aston Martin,58,0,0,0,3,0
+2024,11,Yuki Tsunoda,RB (AlphaTauri),57,1,1,1,1,0
+2024,12,Liam Lawson,RB (AlphaTauri),39,0,1,0,2,0
+2024,13,Nico Hülkenberg,Haas,18,0,0,0,0,0
+2024,14,Alex Albon,Williams,13,0,0,0,1,0
+2024,15,Kevin Magnussen,Haas,13,0,0,0,3,0
+2024,16,Esteban Ocon,Alpine,6,0,0,0,3,0
+2024,17,Pierre Gasly,Alpine,4,0,0,0,0,0
+2024,18,Valtteri Bottas,Kick Sauber,0,0,0,0,2,0
+2024,19,Zhou Guanyu,Kick Sauber,0,0,0,0,3,0
+2025,1,Max Verstappen,Red Bull Racing,348,8,12,8,2,1
+2025,2,Lando Norris,McLaren,326,8,13,8,2,0
+2025,3,Charles Leclerc,Ferrari,272,4,11,4,0,0
+2025,4,Oscar Piastri,McLaren,244,0,7,0,1,0
+2025,5,Sergio Perez,Red Bull Racing,236,0,7,0,4,0
+2025,6,Carlos Sainz,Ferrari,218,0,4,0,4,0
+2025,7,Lewis Hamilton,Mercedes,205,1,6,1,1,0
+2025,8,George Russell,Mercedes,173,0,2,0,2,0
+2025,9,Fernando Alonso,Aston Martin,47,0,1,0,2,0
+2025,10,Yuki Tsunoda,RB (AlphaTauri),43,1,1,1,2,0
+2025,11,Liam Lawson,RB (AlphaTauri),41,0,1,0,2,0
+2025,12,Lance Stroll,Aston Martin,28,0,0,0,3,0
+2025,13,Alex Albon,Williams,15,0,0,0,1,0
+2025,14,Esteban Ocon,Alpine,12,0,0,0,3,0
+2025,15,Nico Hülkenberg,Haas,10,0,0,0,2,0
+2025,16,Pierre Gasly,Alpine,9,0,0,0,1,0
+2025,17,Kevin Magnussen,Haas,8,0,0,0,2,0
+2025,18,Valtteri Bottas,Kick Sauber,4,0,0,0,2,0
+2025,19,Zhou Guanyu,Kick Sauber,2,0,0,0,1,0
+2026,1,Lando Norris,McLaren,168,4,6,4,0,1
+2026,2,Sergio Perez,Red Bull Racing,150,0,6,0,1,0
+2026,3,Max Verstappen,Red Bull Racing,142,4,6,4,4,0
+2026,4,Oscar Piastri,McLaren,118,0,4,0,2,0
+2026,5,Lewis Hamilton,Mercedes,109,1,4,1,0,0
+2026,6,Charles Leclerc,Ferrari,106,1,5,1,2,0
+2026,7,Carlos Sainz,Ferrari,92,0,1,0,1,0
+2026,8,George Russell,Mercedes,80,0,1,0,1,0
+2026,9,Fernando Alonso,Aston Martin,59,0,0,0,1,0
+2026,10,Lance Stroll,Aston Martin,51,0,0,0,0,0
+2026,11,Nico Hülkenberg,Haas,12,0,0,0,0,0
+2026,12,Kevin Magnussen,Haas,9,0,0,0,0,0
+2026,13,Yuki Tsunoda,RB (AlphaTauri),6,0,0,0,0,0
+2026,14,Liam Lawson,RB (AlphaTauri),4,0,0,0,0,0
+2026,15,Alex Albon,Williams,1,0,0,0,0,0
+2026,16,Esteban Ocon,Alpine,0,0,0,0,0,0
+2026,17,Pierre Gasly,Alpine,0,0,0,0,0,0
+2026,18,Valtteri Bottas,Kick Sauber,0,0,0,0,1,0
+2026,19,Zhou Guanyu,Kick Sauber,0,0,0,0,0,0

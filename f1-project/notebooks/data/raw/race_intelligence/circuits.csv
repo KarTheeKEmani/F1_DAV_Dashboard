@@ -1,0 +1,30 @@
+circuit_id,circuit_name,country,city,laps,lap_km,type,altitude_m,direction
+bahrain,Bahrain International Circuit,Bahrain,Sakhir,57,5.412,Permanent,7,Clockwise
+jeddah,Jeddah Corniche Circuit,Saudi Arabia,Jeddah,50,6.174,Street,5,Clockwise
+albert_park,Albert Park Circuit,Australia,Melbourne,58,5.278,Street/Park,10,Clockwise
+suzuka,Suzuka International Circuit,Japan,Suzuka,53,5.807,Permanent,42,Mixed
+shanghai,Shanghai International Circuit,China,Shanghai,56,5.451,Permanent,5,Clockwise
+miami,Miami International Autodrome,USA,Miami,57,5.412,Street/Park,2,Clockwise
+imola,Autodromo Enzo e Dino Ferrari,Italy,Imola,63,4.909,Permanent,38,Anti-clockwise
+monaco,Circuit de Monaco,Monaco,Monte Carlo,78,3.337,Street,7,Clockwise
+canada,Circuit Gilles Villeneuve,Canada,Montreal,70,4.361,Street/Park,8,Clockwise
+spain,Circuit de Barcelona-Catalunya,Spain,Barcelona,66,4.657,Permanent,115,Clockwise
+austria,Red Bull Ring,Austria,Spielberg,71,4.318,Permanent,678,Clockwise
+silverstone,Silverstone Circuit,UK,Silverstone,52,5.891,Permanent,153,Clockwise
+hungary,Hungaroring,Hungary,Budapest,70,4.381,Permanent,264,Clockwise
+spa,Circuit de Spa-Francorchamps,Belgium,Spa,44,7.004,Permanent,401,Clockwise
+zandvoort,Circuit Zandvoort,Netherlands,Zandvoort,72,4.259,Permanent,10,Clockwise
+monza,Autodromo Nazionale Monza,Italy,Monza,53,5.793,Permanent,162,Clockwise
+baku,Baku City Circuit,Azerbaijan,Baku,51,6.003,Street,28,Anti-clockwise
+singapore,Marina Bay Street Circuit,Singapore,Singapore,62,5.063,Street,15,Anti-clockwise
+cota,Circuit of the Americas,USA,Austin,56,5.513,Permanent,165,Anti-clockwise
+mexico,Autodromo Hermanos Rodriguez,Mexico,Mexico City,71,4.304,Permanent,2240,Clockwise
+brazil,Autodromo Jose Carlos Pace,Brazil,São Paulo,71,4.309,Permanent,785,Anti-clockwise
+las_vegas,Las Vegas Strip Circuit,USA,Las Vegas,50,6.12,Street,620,Anti-clockwise
+qatar,Losail International Circuit,Qatar,Lusail,57,5.38,Permanent,11,Clockwise
+abu_dhabi,Yas Marina Circuit,UAE,Abu Dhabi,58,5.281,Permanent,3,Anti-clockwise
+istanbul,Istanbul Park,Turkey,Istanbul,58,5.338,Permanent,130,Anti-clockwise
+portimao,Autodromo Internacional do Algarve,Portugal,Portimão,66,4.653,Permanent,108,Clockwise
+nurburgring,Nürburgring,Germany,Nürburg,60,5.148,Permanent,473,Clockwise
+mugello,Mugello Circuit,Italy,Scarperia,59,5.245,Permanent,255,Clockwise
+bahrain_outer,Bahrain International (Outer),Bahrain,Sakhir,87,3.543,Permanent,7,Clockwise

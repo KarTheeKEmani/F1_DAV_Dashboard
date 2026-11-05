@@ -79,8 +79,13 @@ The platform automatically discovers and ingests all relevant files in `G:\DAV`:
 | Dataset Source | Files / Format | Records | Content & Role in Platform |
 | :--- | :--- | :--- | :--- |
 | **`F1.zip`** (Official FastF1) | `Events.csv`, `Results.csv`, `Laps.csv`, `Fastest_Laps.csv`, `Weather.csv`, `Telemetry.csv` | 24,400 laps<br>16.18M telemetry pts | Official 2023 FIA season: Lap-by-lap timing, sector splits, speed trap velocities, weather records, and car telemetry. |
-| **`Strategy Dataset`** | `f1_strategy_final_dataset.csv` | 80,767 laps | 2021–2024 multi-season tyre stint data with tyre age, compound codes, stint numbers, and SC/VSC status. |
-| **`Formula 1 Relational`** | `pit_stops.csv`, `races.csv`, `drivers.csv`, `constructors.csv`, `circuits.csv` | 10,945 pit stops<br>26,499 results | Millisecond-accurate stationary pit stop durations, historical results, circuit geometries, and driver records. |
+| **Kaggle: `yajatpawar/formula-1-strategy-dataset`** | `f1_strategy_final_dataset.csv` | 80,767 laps | 2021–2024 multi-season tyre stint data with tyre age, compound codes, stint numbers, and SC/VSC status. |
+| **Kaggle: `rohanrao/formula-1-world-championship-1950-2020` (v24: 1950–2024)** | 14 CSV tables (`pit_stops`, `qualifying`, `sprint_results`, `lap_times`, `circuits`, `results`, `races`, `drivers`, `constructors`...) | 11,371 pit stops<br>10,494 qualifying<br>589,081 lap times<br>26,759 results | Millisecond-accurate stationary pit stop durations, knockout qualifying splits, 360 Sprint results, and 77 GPS circuits. |
+| **Kaggle: `melissamonfared/formula-1`** | 14 CSV relational tables | 680,000+ rows | Historical Formula 1 relational schema & cross-validation tables. |
+| **Kaggle: `maulikgajera/formula-one-race-podiums-19502026`** | `f1_podiums_1950_2026.csv` | 1,158 Grands Prix | All-time Grand Prix podium trios (Winner, 2nd, 3rd) from 1950 to 2026. |
+| **Kaggle: `jtrotman/formula-1-race-events`** | `safety_cars.csv`, `red_flags.csv` | 380 Safety Cars<br>103 Red Flags | Historical Safety Car deployments (causes, laps deployed/retreated) and Red Flag stoppages. |
+| **Kaggle: `petalme/f1-drivers-dataset`** | `F1Drivers_Dataset.csv` | 868 All-Time Drivers | Career Championships, Entries, Starts, Poles, Wins, Podiums, Win Rate %, Pole Rate %, and Points/Entry. |
+| **Processed Warehouse & 2024 Archive** | `f1_driver_race_combined.csv` & `G:\DAV\archive` | 26,499 combined starts<br>20 GP 2024 summaries | Multi-dataset warehouse combining historical results + strategy + podiums, plus 2024 season sector/pace data. |
 | **`F1 2.zip`** | `weather.csv`, `weather.json` | 733 MB packets | F1 gaming/simulation telemetry with dynamic track temperature and pit stop window forecasts. |
 | **`F1 3.zip`** | `F1_tweets.csv` | 239 MB | Grand Prix fan engagement, social reaction, and sentiment during race events. |
 | **`Excluded Lab File`** | `DAV_Lab_02_Raw_Customer_Data.xlsx` | 100 rows | **Excluded:** Non-motorsport customer sales practice lab file, documented in audit log. |
@@ -169,8 +174,21 @@ Run the automated test suite with pytest:
 & "G:\DAV\.venv\Scripts\python.exe" -m pytest tests -v
 ```
 
+Or run the full pipeline & chart integration test:
+
+```powershell
+& "G:\DAV\.venv\Scripts\python.exe" test_views_execution.py
+```
+
+Or sync/verify all 6 Kaggle datasets via `kagglehub`:
+
+```powershell
+& "G:\DAV\.venv\Scripts\python.exe" download_kaggle_datasets.py
+```
+
 **Results:**
 - `tests/test_data_cleaning.py`: **PASSED** (Time conversions, compound normalizer, outlier lap filter)
-- `tests/test_data_loading.py`: **PASSED** (Verified real data loading from `F1.zip`, `f1_strategy_final_dataset.csv`, `formula1\`)
+- `tests/test_data_loading.py`: **PASSED** (Verified real data loading from `F1.zip`, `f1_strategy_final_dataset.csv`, `rohanrao_f1\`)
 - `tests/test_analytics.py`: **PASSED** (Degradation slope estimation, pit strategy impact, consistency CV, race strategy simulation)
-- **13 passed in 1.60s with 100% test coverage.**
+- `tests/test_kaggle_datasets.py`: **PASSED** (All 6 Kaggle repositories, 2024 archive, multi-year warehouse analytics, and FastAPI endpoints)
+- **20 passed in 3.44s with 100% test success.**
