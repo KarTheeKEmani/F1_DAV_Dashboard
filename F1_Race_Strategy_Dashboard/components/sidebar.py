@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from typing import Dict, Any, List, Optional
 from data_processing.data_loader import load_unified_results
+from components.custom_graph_builder import render_sidebar_custom_graph_maker
 
 
 NAV_OPTIONS = [
@@ -23,10 +24,13 @@ def render_sidebar(
     unified_results_df: Optional[pd.DataFrame] = None,
     results_df: Optional[pd.DataFrame] = None,
     laps_df: Optional[pd.DataFrame] = None,
+    data_bundle: Optional[Dict[str, Any]] = None,
+    **kwargs: Any,
 ) -> Dict[str, Any]:
     """
-    Renders the Top Horizontal Dashboard Navigation Bar at the top of the main page
-    and the cascading Year, Team Name, Driver, Grand Prix, and Compound filters at the top of the sidebar.
+    Renders the Top Horizontal Dashboard Navigation Bar at the top of the main page,
+    the cascading Year, Team Name, Driver, Grand Prix, and Compound filters at the top of the sidebar,
+    and the interactive Custom Graph Studio for selected data directly in the left dashboard.
     """
     if unified_results_df is None or unified_results_df.empty:
         unified_results_df = results_df if (results_df is not None and not results_df.empty) else load_unified_results()
@@ -128,6 +132,29 @@ def render_sidebar(
         if st.button("🔄 Reset Filters", use_container_width=True):
             st.rerun()
 
+        # Build current filter dictionary for dynamic graph maker
+        active_filters_for_graph = {
+            "selected_year": selected_year,
+            "selected_team": selected_team,
+            "selected_drivers": selected_drivers,
+            "selected_event": selected_event,
+            "selected_compound": selected_compound,
+            "year_sort_ascending": year_sort_ascending,
+        }
+
+        # Build fallback bundle if data_bundle wasn't fully supplied
+        effective_bundle = data_bundle or {
+            "events": events_df,
+            "results": unified_results_df if (results_df is None or results_df.empty) else results_df,
+            "laps": laps_df if laps_df is not None else pd.DataFrame(),
+        }
+
+        # Interactive Custom Graph Studio for Selected Data (rendered right in the Left Dashboard)
+        custom_main_fig, custom_graph_config = render_sidebar_custom_graph_maker(
+            data_bundle=effective_bundle,
+            filters=active_filters_for_graph,
+        )
+
         st.markdown("---")
         st.markdown(
             '<div style="font-size: 0.73rem; color: #626d7f; line-height: 1.4;">'
@@ -147,4 +174,6 @@ def render_sidebar(
         "selected_drivers": selected_drivers,
         "selected_team": selected_team,
         "selected_compound": selected_compound,
+        "custom_graph_fig": custom_main_fig,
+        "custom_graph_config": custom_graph_config,
     }

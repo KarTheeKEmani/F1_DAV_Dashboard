@@ -10,7 +10,14 @@ from components.kpi_cards import render_kpi_grid
 from components.charts import (
     plot_race_finish_vs_grid, plot_driver_standings, plot_stint_timeline,
     plot_tyre_degradation, plot_lap_pace_progression, plot_telemetry_traces,
-    plot_pitstop_distribution, plot_strategy_simulation
+    plot_pitstop_distribution, plot_strategy_simulation,
+    plot_constructor_points_donut, plot_championship_sunburst,
+    plot_cumulative_points_area, plot_driver_finish_heatmap,
+    plot_strategy_type_donut, plot_pit_stops_vs_finish_scatter,
+    plot_safety_car_causes_pie, plot_compound_donut_chart,
+    plot_stint_length_violin, plot_stint_compound_treemap,
+    plot_pitstop_by_team_violin, plot_driver_lap_time_violin,
+    plot_driver_performance_radar, plot_grid_to_finish_waterfall
 )
 from components.tables import render_interactive_table
 from data_processing.analytics import (
@@ -98,6 +105,28 @@ def render_race_overview(data: dict, filters: dict):
         st.markdown("### 🎯 Starting Grid vs Final Finish")
         fig_grid = plot_race_finish_vs_grid(results_df, f"Grid vs Finish Delta ({year_label})")
         st.plotly_chart(fig_grid, use_container_width=True)
+
+    # Constructor Points Share (Donut) & Hierarchy (Sunburst)
+    ov_donut_c1, ov_donut_c2 = st.columns([1.0, 1.0])
+    with ov_donut_c1:
+        st.markdown("### 🍩 Constructor Points Share (Donut Chart)")
+        fig_donut = plot_constructor_points_donut(results_df, f"Constructor Points Distribution ({year_label})")
+        st.plotly_chart(fig_donut, use_container_width=True)
+    with ov_donut_c2:
+        st.markdown("### ☀️ Championship Hierarchy: Constructor ➔ Driver (Sunburst)")
+        fig_sunburst = plot_championship_sunburst(results_df, f"Points Hierarchy ({year_label})")
+        st.plotly_chart(fig_sunburst, use_container_width=True)
+
+    # Cumulative Points Area Chart & Finishing Matrix Heatmap
+    ov_area_c1, ov_area_c2 = st.columns([1.1, 0.9])
+    with ov_area_c1:
+        st.markdown("### 📈 Cumulative Championship Points (Area Chart)")
+        fig_area = plot_cumulative_points_area(results_df, top_n=6, title=f"Top Driver Cumulative Points ({year_label})")
+        st.plotly_chart(fig_area, use_container_width=True)
+    with ov_area_c2:
+        st.markdown("### 🌡️ Driver Finishing Position Matrix (Heatmap)")
+        fig_heatmap = plot_driver_finish_heatmap(results_df, top_n=12, title=f"Finishing Positions by Round ({year_label})")
+        st.plotly_chart(fig_heatmap, use_container_width=True)
 
     # Year-wise performance trend when multiple years or team/driver selected
     if not results_df.empty and 'Year' in results_df.columns:
@@ -297,7 +326,22 @@ def render_race_strategy(data: dict, filters: dict):
                     fig_start.update_layout(get_plotly_f1_layout("Grand Prix Wins by Starting Compound", height=370))
                     st.plotly_chart(fig_start, use_container_width=True)
 
-            # Stint Timeline Gantt Chart
+            # Strategy Donut & Pit Stop Sitograph
+            strat_c3, strat_c4 = st.columns(2)
+            with strat_c3:
+                st.markdown("### 🍩 Strategy Type Distribution (Donut Chart)")
+                fig_strat_donut = plot_strategy_type_donut(strat_summary, "Pit Stop Strategy Split (1-Stop vs 2-Stop vs Multi-Stop)")
+                st.plotly_chart(fig_strat_donut, use_container_width=True)
+            with strat_c4:
+                st.markdown("### 🔬 Pit Stops vs Finish Position (Sitograph / Scatter)")
+                fig_sitograph = plot_pit_stops_vs_finish_scatter(strat_summary, "Pit Stop Count vs Finishing Position Correlation")
+                st.plotly_chart(fig_sitograph, use_container_width=True)
+
+            # Grid to Finish Waterfall & Stint Timeline Gantt Chart
+            st.markdown("### 🌊 Grid-to-Finish Position Changes (Waterfall Chart)")
+            fig_waterfall = plot_grid_to_finish_waterfall(results_df, "Starting Grid to Finish Position Delta (Waterfall)")
+            st.plotly_chart(fig_waterfall, use_container_width=True)
+
             st.markdown("### 📊 Grand Prix Stint & Tyre Choice Timeline")
             fig_timeline = plot_stint_timeline(laps_df, f"Tyre Stints Timeline ({filters.get('selected_year', 'All Years')} — {filters['selected_event']})")
             st.plotly_chart(fig_timeline, use_container_width=True)
@@ -426,12 +470,18 @@ def render_race_strategy(data: dict, filters: dict):
                     text="Deployments",
                     title="Primary Triggers of Safety Car Deployments"
                 )
-                layout = get_plotly_f1_layout("Safety Car Deployment Causes", height=360)
+                layout = get_plotly_f1_layout("Safety Car Deployment Causes (Bar)", height=360)
                 layout['yaxis']['autorange'] = 'reversed'
                 fig_sc.update_layout(layout)
                 st.plotly_chart(fig_sc, use_container_width=True)
 
         with sc_c2:
+            st.markdown("### 🥧 Safety Car Triggers (Pie Chart)")
+            fig_sc_pie = plot_safety_car_causes_pie(sc_df, "Safety Car Causes Share (Pie Chart)")
+            st.plotly_chart(fig_sc_pie, use_container_width=True)
+
+        sc_c3, sc_c4 = st.columns(2)
+        with sc_c3:
             ps_multi = wh_stats.get("pitstops_vs_finish_multiyear", pd.DataFrame())
             if not ps_multi.empty:
                 fig_psm = px.bar(
@@ -445,6 +495,22 @@ def render_race_strategy(data: dict, filters: dict):
                 )
                 fig_psm.update_layout(get_plotly_f1_layout("Pit Stops vs Average Finish (Combined Warehouse)", height=360))
                 st.plotly_chart(fig_psm, use_container_width=True)
+
+        with sc_c4:
+            if not strat_multi_df.empty and {'Year', 'Compound', 'LapTimeSec'}.issubset(strat_multi_df.columns):
+                wh_pace = wh_stats.get("season_compound_pace", pd.DataFrame())
+                if not wh_pace.empty:
+                    fig_cp = px.bar(
+                        wh_pace,
+                        x="Year",
+                        y="MedianLapSec",
+                        color="Compound",
+                        barmode="group",
+                        color_discrete_map=TYRE_COMPOUND_COLORS,
+                        title="Median Lap Time (s) by Compound Across Seasons"
+                    )
+                    fig_cp.update_layout(get_plotly_f1_layout("Season Compound Pace Benchmark", height=360))
+                    st.plotly_chart(fig_cp, use_container_width=True)
 
         sc_t1, sc_t2 = st.columns(2)
         with sc_t1:
@@ -546,6 +612,22 @@ def render_tyre_analysis(data: dict, filters: dict):
                 layout['xaxis']['tickangle'] = -30
                 fig_bar.update_layout(layout)
                 st.plotly_chart(fig_bar, use_container_width=True)
+
+    # Tyre Compound Share Donut & Stint Duration Density Violin
+    tyre_c1, tyre_c2 = st.columns(2)
+    with tyre_c1:
+        st.markdown("### 🍩 Tyre Compound Usage Share (Donut Chart)")
+        fig_comp_donut = plot_compound_donut_chart(laps_df, "Tyre Compound Laps Completed (Donut Chart)")
+        st.plotly_chart(fig_comp_donut, use_container_width=True)
+    with tyre_c2:
+        st.markdown("### 🎻 Stint Duration Density Distribution (Violin Plot)")
+        fig_stint_violin = plot_stint_length_violin(laps_df, "Stint Length Density & Quartiles by Compound")
+        st.plotly_chart(fig_stint_violin, use_container_width=True)
+
+    # Tyre Stint Hierarchy Treemap
+    st.markdown("### 🌲 Tyre Usage Treemap: Constructor ➔ Compound")
+    fig_treemap = plot_stint_compound_treemap(laps_df, "Tyre Compound Allocation Hierarchy by Team (Treemap)")
+    st.plotly_chart(fig_treemap, use_container_width=True)
 
     # Kaggle Stint Data with Driver & Tire Usage Aggression Scores (2018-2024)
     if not stint_agg_df.empty:
@@ -670,6 +752,35 @@ def render_pit_stop_analytics(data: dict, filters: dict):
                 height=350
             )
 
+    # Pit Stop Duration Violin Plot by Constructor & Stationary vs Lap Scatter
+    ps_c3, ps_c4 = st.columns([1.1, 0.9])
+    with ps_c3:
+        st.markdown("### 🎻 Pit Stop Duration by Constructor (Violin Plot)")
+        fig_ps_violin = plot_pitstop_by_team_violin(clean_ps, "Pit Crew Stationary Duration Variance (Violin Plot)")
+        st.plotly_chart(fig_ps_violin, use_container_width=True)
+    with ps_c4:
+        st.markdown("### 🔬 Stationary Stop vs Pit-Lane Duration (Scatter / Sitograph)")
+        if not pit_events_df.empty and {'stop_duration_s', 'pit_duration_s'}.issubset(pit_events_df.columns):
+            pe_valid = pit_events_df[(pit_events_df['stop_duration_s'] >= 1.5) & (pit_events_df['stop_duration_s'] <= 10.0) & (pit_events_df['pit_duration_s'] >= 14.0) & (pit_events_df['pit_duration_s'] <= 35.0)].head(600)
+            if not pe_valid.empty:
+                fig_pe_scat = px.scatter(
+                    pe_valid,
+                    x='stop_duration_s',
+                    y='pit_duration_s',
+                    color='TeamName',
+                    color_discrete_map=TEAM_COLORS,
+                    hover_name='FullName',
+                    title="Stationary Duration vs Pit-Lane Total Traverse Time"
+                )
+                fig_pe_scat.update_layout(get_plotly_f1_layout("Stationary vs Total Pit-Lane Duration", height=390))
+                fig_pe_scat.update_xaxes(title="Stationary Stop Time (s)")
+                fig_pe_scat.update_yaxes(title="Total Pit-Lane Duration (s)")
+                st.plotly_chart(fig_pe_scat, use_container_width=True)
+            else:
+                st.info("No dual stationary/pit-lane events in selection.")
+        else:
+            st.info("Pit events comparison data loading...")
+
     # Dedicated Kaggle Pit Events Table (Stationary vs Total Pit Lane Time, 2011-2026)
     if not pit_events_df.empty:
         st.markdown("### 🛠️ Kaggle Pit Stop Events — Stationary Time vs Pit-Lane Traverse Time (2011–2026, Sorted Year-Wise)")
@@ -771,6 +882,17 @@ def render_telemetry_analysis(data: dict, filters: dict):
             picked_drivers = st.multiselect("Select Drivers to Compare", drivers_avail, default=default_selection)
             fig_pace = plot_lap_pace_progression(laps_df, drivers=picked_drivers, title="Lap Time Evolution")
             st.plotly_chart(fig_pace, use_container_width=True)
+
+            # Violin Pace Density & Driver Attributes Radar
+            tel_c1, tel_c2 = st.columns(2)
+            with tel_c1:
+                st.markdown("### 🎻 Lap Pace Density & Consistency (Violin Plot)")
+                fig_tel_violin = plot_driver_lap_time_violin(laps_df, drivers=picked_drivers, title="Driver Lap Time Variance (Violin Plot)")
+                st.plotly_chart(fig_tel_violin, use_container_width=True)
+            with tel_c2:
+                st.markdown("### 🕸️ Driver Motorsport Attributes (Radar / Spider Chart)")
+                fig_tel_radar = plot_driver_performance_radar(results_df, laps_df, drivers=picked_drivers, title="Driver Skills & Efficiency Radar")
+                st.plotly_chart(fig_tel_radar, use_container_width=True)
         else:
             st.info("No lap records match the current filter combination.")
 
@@ -847,27 +969,39 @@ def render_driver_team_performance(data: dict, filters: dict):
                     height=340
                 )
 
-        # Positions Gained Distribution
-        st.markdown("### 🚀 Positions Gained from Grid (Overtaking Index)")
-        if not results_df.empty and 'PositionsGained' in results_df.columns:
-            gain_df = (
-                results_df.groupby(['FullName', 'TeamName'], as_index=False)['PositionsGained']
-                .sum()
-                .sort_values('PositionsGained', ascending=False)
-                .head(30)
-            )
-            fig_gain = px.bar(
-                gain_df,
-                x='FullName',
-                y='PositionsGained',
-                color='TeamName',
-                color_discrete_map=TEAM_COLORS,
-                title="Net Positions Gained / Lost (Top 30 in Filtered Selection)"
-            )
-            layout = get_plotly_f1_layout("Net Positions Gained Across Selection", height=410)
-            layout['xaxis']['tickangle'] = -35
-            fig_gain.update_layout(layout)
-            st.plotly_chart(fig_gain, use_container_width=True)
+        # Positions Gained Distribution & Diverging Waterfall
+        dt_c3, dt_c4 = st.columns([1.1, 0.9])
+        with dt_c3:
+            st.markdown("### 🚀 Positions Gained from Grid (Overtaking Index)")
+            if not results_df.empty and 'PositionsGained' in results_df.columns:
+                gain_df = (
+                    results_df.groupby(['FullName', 'TeamName'], as_index=False)['PositionsGained']
+                    .sum()
+                    .sort_values('PositionsGained', ascending=False)
+                    .head(30)
+                )
+                fig_gain = px.bar(
+                    gain_df,
+                    x='FullName',
+                    y='PositionsGained',
+                    color='TeamName',
+                    color_discrete_map=TEAM_COLORS,
+                    title="Net Positions Gained / Lost (Top 30 in Filtered Selection)"
+                )
+                layout = get_plotly_f1_layout("Net Positions Gained Across Selection", height=410)
+                layout['xaxis']['tickangle'] = -35
+                fig_gain.update_layout(layout)
+                st.plotly_chart(fig_gain, use_container_width=True)
+
+        with dt_c4:
+            st.markdown("### 🌊 Net Position Changes (Waterfall Chart)")
+            fig_dt_waterfall = plot_grid_to_finish_waterfall(results_df, "Grid to Finish Net Changes (Waterfall)")
+            st.plotly_chart(fig_dt_waterfall, use_container_width=True)
+
+        # Driver Multi-Attribute Radar Analysis
+        st.markdown("### 🕸️ Driver Performance Radar / Spider Analysis")
+        fig_dt_radar = plot_driver_performance_radar(results_df, laps_df, title="Driver Skills & Efficiency Multi-Axis Radar")
+        st.plotly_chart(fig_dt_radar, use_container_width=True)
 
     with dt_tab2:
         gp_winners_df = apply_global_filters(data.get('gp_winners', load_kaggle_gp_winners()), filters, sort_year_wise=True)

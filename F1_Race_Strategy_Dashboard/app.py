@@ -18,6 +18,7 @@ st.set_page_config(
 
 from components.styling import apply_custom_css
 from components.sidebar import render_sidebar
+from components.custom_graph_builder import render_main_custom_graph_card
 from data_processing.data_loader import (
     load_f1_events, load_unified_results, load_unified_laps,
     load_f1_fastest_laps, load_f1_weather, load_strategy_dataset,
@@ -61,16 +62,7 @@ def main():
     drivers_list = sorted(results_df['FullName'].dropna().unique().tolist()) if not results_df.empty else []
     teams_list = sorted(results_df['TeamName'].dropna().unique().tolist()) if not results_df.empty else []
 
-    # Render Sidebar with Navigation and Cascading Year / Team / Driver / GP Filters
-    filters = render_sidebar(
-        events_df=events_df,
-        drivers_list=drivers_list,
-        teams_list=teams_list,
-        results_df=results_df,
-        laps_df=laps_df
-    )
-
-    # Pack data dictionary
+    # Pack comprehensive multi-repository data bundle
     data_bundle = {
         'events': events_df,
         'results': results_df,
@@ -89,6 +81,23 @@ def main():
         'gp_winners': gp_winners_df,
         'weather_multi': weather_multi_df,
     }
+
+    # Render Sidebar with Navigation, Cascading Filters & Left Dashboard Custom Graph Studio
+    filters = render_sidebar(
+        events_df=events_df,
+        drivers_list=drivers_list,
+        teams_list=teams_list,
+        results_df=results_df,
+        laps_df=laps_df,
+        data_bundle=data_bundle,
+    )
+
+    # Render Active Custom Graph Card on Main Dashboard if enabled by user in Left Dashboard
+    if filters.get("custom_graph_fig") and filters.get("custom_graph_config"):
+        render_main_custom_graph_card(
+            filters["custom_graph_fig"],
+            filters["custom_graph_config"]
+        )
 
     # Dispatch to Selected View
     page = filters['selected_page']
