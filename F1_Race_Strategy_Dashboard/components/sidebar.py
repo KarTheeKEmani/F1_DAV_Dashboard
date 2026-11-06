@@ -3,6 +3,8 @@ import pandas as pd
 from typing import Dict, Any, List, Optional
 from data_processing.data_loader import load_unified_results
 from components.custom_graph_builder import render_sidebar_custom_graph_maker
+from components.car_showcase import get_f1_car_img_tag, TEAM_METADATA
+from config import DRIVER_MAP, TEAM_COLORS
 
 
 NAV_OPTIONS = [
@@ -113,6 +115,38 @@ def render_sidebar(
         )
         if not selected_drivers:
             selected_drivers = ["All Drivers"]
+
+        # Dynamic Mini F1 Car Livery Spotlight in Sidebar
+        active_team_for_car = selected_team
+        active_drv_num = None
+        if selected_drivers and selected_drivers != ["All Drivers"] and len(selected_drivers) == 1:
+            clean_d = selected_drivers[0].split(" (")[0].strip()
+            for n, inf in DRIVER_MAP.items():
+                if inf["name"].lower() == clean_d.lower():
+                    active_drv_num = str(n)
+                    if active_team_for_car == "All Teams":
+                        active_team_for_car = inf["team"]
+                    break
+
+        car_color = TEAM_METADATA.get(active_team_for_car, {}).get("primary_color", TEAM_COLORS.get(active_team_for_car, "#e10600"))
+        car_accent = TEAM_METADATA.get(active_team_for_car, {}).get("accent_color", "#ffffff")
+        mini_car_img = get_f1_car_img_tag(primary_color=car_color, accent_color=car_accent, driver_number=active_drv_num, width=260, height=70)
+        label_text = f"Livery: {active_team_for_car}" if active_team_for_car != "All Teams" else "Championship Spec Car"
+        if active_drv_num:
+            label_text += f" (#{active_drv_num})"
+
+        sidebar_car_html = (
+            f'<div style="text-align: center; margin-top: 6px; margin-bottom: 10px; '
+            f'background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%); '
+            f'border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid {car_color}; '
+            f'border-radius: 8px; padding: 6px 8px;">'
+            f'{mini_car_img}'
+            f'<div style="font-size: 0.69rem; color: #cfd6e0; margin-top: 2px; font-weight: 600;">'
+            f'🏎️ <span style="color: {car_color};">{label_text}</span>'
+            f'</div>'
+            f'</div>'
+        )
+        st.markdown(sidebar_car_html, unsafe_allow_html=True)
 
         # Grand Prix Event selector (Cascading from Year)
         if not ref_df.empty and "EventName" in ref_df.columns:

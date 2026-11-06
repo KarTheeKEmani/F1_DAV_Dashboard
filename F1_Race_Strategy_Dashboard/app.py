@@ -19,6 +19,7 @@ st.set_page_config(
 from components.styling import apply_custom_css
 from components.sidebar import render_sidebar
 from components.custom_graph_builder import render_main_custom_graph_card
+from components.car_showcase import inject_f1_ambient_background, render_team_driver_showcase
 from data_processing.data_loader import (
     load_f1_events, load_unified_results, load_unified_laps,
     load_f1_fastest_laps, load_f1_weather, load_strategy_dataset,
@@ -91,6 +92,12 @@ def main():
         laps_df=laps_df,
         data_bundle=data_bundle,
     )
+
+    # Dynamic Background & Ambient Livery Lighting (adapts instantly to selected Team / Driver)
+    inject_f1_ambient_background(filters)
+
+    # Dynamic F1 Car Showcase Hero Banner (displays selected constructor car, specs & livery)
+    render_team_driver_showcase(filters, data_bundle)
 
     # Render Active Custom Graph Card on Main Dashboard if enabled by user in Left Dashboard
     if filters.get("custom_graph_fig") and filters.get("custom_graph_config"):
